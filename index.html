@@ -1365,62 +1365,115 @@ a.pc{text-decoration:none; cursor:pointer;}
 
 <script>
 (function(){
-  // key-slot field: a grid of small fingerprints that light in slow waves, brighter near the cursor
+  // hero fingerprint: one large print, barely there until the cursor lights its ridges.
+  // A scan line sweeps it every few seconds (faster while hovered); clicking it "unlocks" it.
   const fx=document.getElementById('herofx'), cv=document.getElementById('slots'); if(!cv) return;
-  const g=cv.getContext('2d'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W=0,H=0,dpr=1,cols=0,rows=0,amber=new Set(),mx=-9999,my=-9999,last=0,raf=0,spr={};
-  const SP=32, FS=64, VAR=[-0.45,-0.12,0.18,0.5];
+  const g=cv.getContext('2d'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, noHover=matchMedia('(hover: none)').matches;
+  const base=document.createElement('canvas'), lit=document.createElement('canvas'), tmp=document.createElement('canvas'), t=tmp.getContext('2d');
+  let W=0,H=0,dpr=1,S=1,ox=0,oy=0,mx=-9999,my=-9999,lightA=0,scan=-0.3,speed=1,unlockAt=-1,prev=0,last=0,raf=0,fade=1,over=false;
+  const GREEN='47,191,98';
   function dark(){ const c=getComputedStyle(document.documentElement).getPropertyValue('--bg').trim(); const n=parseInt(c.replace('#',''),16); return ((n>>16&255)*.3+(n>>8&255)*.59+(n&255)*.11)<110; }
   let isDark=dark();
-  // one fingerprint glyph on a FSxFS sprite: a hooked core, then nested ridges open at the base, each broken once
-  function print(col,rot){
-    const c=document.createElement('canvas'); c.width=c.height=FS; const x=c.getContext('2d');
-    x.translate(FS/2,FS/2); x.rotate(rot); x.strokeStyle=col; x.lineWidth=3.4; x.lineCap='round';
-    x.beginPath(); x.moveTo(0,6); x.lineTo(0,-1); x.ellipse(-2.2,-1,2.2,2.6,0,0,Math.PI,true); x.stroke();
-    for(let i=1;i<=5;i++){
-      const rx=1+i*3.9, ry=rx*1.3, open=0.30-i*0.035, a0=Math.PI*(0.5+open), a1=Math.PI*(2.5-open);
-      const gap=Math.PI*(1.05+((i*0.47)%0.9)), gw=0.5/i+0.1;
-      x.beginPath(); x.ellipse(0,1,rx,ry,0,a0,gap-gw); x.stroke();
-      x.beginPath(); x.ellipse(0,1,rx,ry,0,gap+gw,a1); x.stroke();
+
+  // ridge polylines in unit space: a whorl of broken, slightly wobbly loops, then ridges below that follow its base
+  const R=(function(){
+    let sd=7; const rnd=()=>{ sd=(sd+0x6D2B79F5)|0; let x=Math.imul(sd^sd>>>15,1|sd); x=x+Math.imul(x^x>>>7,61|x)^x; return ((x^x>>>14)>>>0)/4294967296; };
+    const L=[], N=17;
+    for(let i=0;i<N;i++){
+      const rx=0.06+i*0.058, ry=rx*1.3, open=0.035+0.05/(i+1), tilt=0.06*Math.sin(i*1.7), a0=Math.PI*(0.5+open+tilt), a1=Math.PI*(2.5-open+tilt);
+      const cuts=[]; const nb=i<2?0:(rnd()<0.5?1:2); for(let k=0;k<nb;k++) cuts.push(a0+(a1-a0)*(0.1+0.8*rnd()));
+      let seg=[];
+      for(let ang=a0;ang<=a1;ang+=0.025){
+        if(cuts.some(c=>Math.abs(ang-c)<0.045+0.03/(i+1))){ if(seg.length>1) L.push(seg); seg=[]; continue; }
+        const w=1+0.03*Math.sin(3*ang+i*0.7)+0.02*Math.sin(5*ang-i*1.3), top=Math.sin(ang)<0?1.1:1;
+        seg.push([rx*Math.cos(ang)*w, -0.08+ry*Math.sin(ang)*w*top]);
+      }
+      if(seg.length>1) L.push(seg);
     }
-    return c;
+    const rxO=0.06+(N-1)*0.058, ryO=rxO*1.3;
+    for(let j=1;j<=6;j++){
+      const seg=[], span=rxO*(1-j*0.06);
+      for(let x=-span;x<=span+1e-9;x+=0.02){ const e=ryO*Math.sqrt(Math.max(0,1-(x/rxO)**2)); seg.push([x, -0.08+e*(1-j*0.09)+ryO*j*0.09+j*0.06]); }
+      L.push(seg);
+    }
+    let x0=9,x1=-9,y0=9,y1=-9; L.forEach(sg=>sg.forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}));
+    return {L, cx:(x0+x1)/2, cy:(y0+y1)/2, hw:(x1-x0)/2, hh:(y1-y0)/2, core:[0,-0.08]};
+  })();
+  const toX=u=>ox+(u-R.cx)*S, toY=v=>oy+(v-R.cy)*S;
+
+  function bake(cnv,stroke,lw,glow){
+    cnv.width=W*dpr; cnv.height=H*dpr; const x=cnv.getContext('2d');
+    x.setTransform(dpr,0,0,dpr,0,0); x.strokeStyle=stroke; x.lineWidth=lw; x.lineCap='round'; x.lineJoin='round';
+    if(glow){ x.shadowColor='rgba('+GREEN+',.85)'; x.shadowBlur=glow; }
+    x.beginPath(); R.L.forEach(sg=>{ x.moveTo(toX(sg[0][0]),toY(sg[0][1])); for(let k=1;k<sg.length;k++) x.lineTo(toX(sg[k][0]),toY(sg[k][1])); }); x.stroke();
   }
-  function sprites(){ spr={}; [['g','rgb(47,191,98)'],['a','rgb(227,154,45)'],['w','rgb(255,255,255)'],['k','rgb(18,23,29)']].forEach(([k,col])=>{ spr[k]=VAR.map(r=>print(col,r)); }); }
   function size(){
-    dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight;
-    cv.width=W*dpr; cv.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0);
-    cols=Math.ceil(W/SP)+1; rows=Math.ceil(H/SP)+1;
-    amber=new Set(); for(let i=0;i<cols*rows*0.006;i++) amber.add((Math.random()*cols*rows)|0);
-    isDark=dark(); if(reduce) draw(0);
+    dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; isDark=dark();
+    const narrow=W<760;
+    S=narrow?Math.min(H*0.30/R.hh, W*0.42/R.hw):Math.min(H*0.40/R.hh, W*0.20/R.hw);
+    ox=narrow?W*0.5:W*0.73; oy=narrow?H*0.42:H*0.52;
+    cv.width=tmp.width=W*dpr; cv.height=tmp.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0);
+    bake(base, isDark?'rgba(255,255,255,.075)':'rgba(18,23,29,.09)', 1.2, 0);
+    bake(lit, isDark?'rgb('+GREEN+')':'rgb(24,150,74)', isDark?1.5:1.7, isDark?6:2);
+    draw(performance.now()/1000, 0);
   }
-  function draw(t){
-    g.clearRect(0,0,W,H);
-    const base=spr[isDark?'w':'k'], baseA=isDark?0.09:0.11;
-    for(let r=0;r<rows;r++) for(let c=0;c<cols;c++){
-      const x=c*SP+(r%2?SP/2:0), y=r*SP, i=r*cols+c, v=(i*7+r*3)%VAR.length;
-      // diagonal wave travelling across the field
-      const w=Math.pow(Math.max(0,Math.sin((x*0.6+y)*0.007-t*0.7)),26);
-      const d=Math.hypot(x-mx,y-my), near=Math.max(0,1-d/170);
-      const k=Math.min(1,w*0.5+near*0.8);
-      if(k<0.04){ g.globalAlpha=baseA; g.drawImage(base[v],x-6.5,y-6.5,13,13); continue; }
-      const am=amber.has(i), col=am?'227,154,45':'47,191,98';
-      if(k>0.6){ g.globalAlpha=1; g.fillStyle='rgba('+col+','+(k*0.12).toFixed(3)+')'; g.beginPath(); g.arc(x,y,9+k*7,0,7); g.fill(); }
-      const s=13+k*11;
-      g.globalAlpha=0.12+k*0.78; g.drawImage(spr[am?'a':'g'][v],x-s/2,y-s/2,s,s);
-    }
-    g.globalAlpha=1;
+  function inside(x,y){ const u=(x-ox)/(R.hw*S*1.05), v=(y-oy)/(R.hh*S*1.02); return u*u+v*v<1; }
+
+  const chip=document.createElement('div'); chip.setAttribute('aria-hidden','true'); chip.textContent='✓ Access granted';
+  chip.style.cssText='position:fixed;z-index:2;pointer-events:none;transform:translate(-50%,-50%) scale(.92);opacity:0;transition:opacity .35s,transform .35s;'+
+    'padding:9px 16px;border-radius:999px;background:rgba('+GREEN+',.16);border:1px solid rgba('+GREEN+',.55);color:#2FBF62;'+
+    'font:600 .9rem "IBM Plex Sans",system-ui,sans-serif;letter-spacing:.02em;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);white-space:nowrap;';
+  document.body.appendChild(chip);
+
+  function draw(time,dt){
+    g.clearRect(0,0,W,H); g.drawImage(base,0,0,W,H);
+    t.setTransform(dpr,0,0,dpr,0,0); t.globalCompositeOperation='source-over'; t.clearRect(0,0,W,H);
+    const top=oy-R.hh*S, h=2*R.hh*S, hw=R.hw*S;
+    // light under the cursor (or a slow drift on touch screens)
+    let lx=mx, ly=my, want=(mx>-9000&&!noHover)?1:0;
+    if(noHover&&!reduce){ lx=ox+hw*0.7*Math.sin(time*0.35); ly=oy+R.hh*S*0.8*Math.sin(time*0.23); want=0.8; }
+    lightA+=(want-lightA)*Math.min(1,dt*6);
+    if(lightA>0.01){ const LR=Math.max(120,hw*0.75), rg=t.createRadialGradient(lx,ly,0,lx,ly,LR);
+      rg.addColorStop(0,'rgba(0,0,0,'+(0.95*lightA).toFixed(3)+')'); rg.addColorStop(0.5,'rgba(0,0,0,'+(0.35*lightA).toFixed(3)+')'); rg.addColorStop(1,'rgba(0,0,0,0)');
+      t.fillStyle=rg; t.fillRect(lx-LR,ly-LR,LR*2,LR*2); }
+    // scan band with a short trail
+    const sy=top+scan*h, BW=Math.max(18,h*0.05);
+    if(scan>-0.05&&scan<1.05){ const lg=t.createLinearGradient(0,sy-BW*4,0,sy+BW*0.6);
+      lg.addColorStop(0,'rgba(0,0,0,0)'); lg.addColorStop(0.8,'rgba(0,0,0,.45)'); lg.addColorStop(0.9,'rgba(0,0,0,.95)'); lg.addColorStop(1,'rgba(0,0,0,0)');
+      t.fillStyle=lg; t.fillRect(ox-hw*1.2,sy-BW*4,hw*2.4,BW*4.6); }
+    // unlock: ridges fill outward from the core, hold, then fade
+    let ua=0;
+    if(unlockAt>=0){ const e=time-unlockAt, cx=toX(R.core[0]), cy=toY(R.core[1]), maxR=Math.hypot(hw,R.hh*S)*1.1;
+      const rr=maxR*Math.min(1,e/1.0), a=e<2.4?1:Math.max(0,1-(e-2.4)/0.8); ua=a;
+      if(rr>0){ t.fillStyle='rgba(0,0,0,'+a.toFixed(3)+')'; t.beginPath(); t.arc(cx,cy,rr,0,7); t.fill(); }
+      const on=e>0.85&&e<2.9; chip.style.left=cx+'px'; chip.style.top=(top+h*0.08)+'px'; chip.style.opacity=on?'1':'0'; chip.style.transform='translate(-50%,-50%) scale('+(on?1:.92)+')';
+      if(e>3.3){ unlockAt=-1; } }
+    t.globalCompositeOperation='source-in'; t.drawImage(lit,0,0,W,H);
+    g.drawImage(tmp,0,0,W,H);
+    // the scan line itself, only across the print
+    if(scan>0&&scan<1){ const v=(sy-oy)/(R.hh*S), half=hw*Math.sqrt(Math.max(0,1-v*v))*1.05;
+      if(half>4){ const lg=g.createLinearGradient(ox-half,0,ox+half,0); lg.addColorStop(0,'rgba('+GREEN+',0)'); lg.addColorStop(0.5,'rgba('+GREEN+','+(0.7*(1-ua)).toFixed(3)+')'); lg.addColorStop(1,'rgba('+GREEN+',0)');
+        g.fillStyle=lg; g.fillRect(ox-half,sy-0.75,half*2,1.5); } }
   }
   function loop(ts){
-    const fade=Math.max(0,1-scrollY/(innerHeight*0.85));
-    fx.style.opacity=fade.toFixed(3);
-    if(fade>0 && ts-last>33){ last=ts; draw(ts/1000); }
+    const time=ts/1000, dt=prev?Math.min(0.1,time-prev):0; prev=time;
+    fade=Math.max(0,1-scrollY/(innerHeight*0.85)); fx.style.opacity=fade.toFixed(3);
+    speed+=((over?3:1)-speed)*Math.min(1,dt*3);
+    scan+=dt*speed/5; if(scan>1.35) scan=-0.35;
+    if(fade>0 && ts-last>16){ last=ts; draw(time,dt); }
     raf=requestAnimationFrame(loop);
   }
+  const interactive=el=>el&&el.closest&&el.closest('a,button,input,select,textarea,label,summary,[role="button"],header,nav');
   addEventListener('resize',size);
-  if(!reduce) addEventListener('pointermove',e=>{mx=e.clientX; my=e.clientY;},{passive:true});
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else if(!reduce) raf=requestAnimationFrame(loop); });
-  const mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',()=>{isDark=dark(); if(reduce) draw(0);});
-  sprites(); size();
+  if(!reduce){
+    addEventListener('pointermove',e=>{ if(e.pointerType==='touch') return; mx=e.clientX; my=e.clientY;
+      over=fade>0.5&&inside(mx,my)&&!interactive(e.target); document.body.style.cursor=over?'pointer':''; },{passive:true});
+    document.documentElement.addEventListener('pointerleave',()=>{ mx=my=-9999; over=false; document.body.style.cursor=''; });
+    addEventListener('pointerdown',e=>{ if(fade>0.5&&inside(e.clientX,e.clientY)&&!interactive(e.target)&&unlockAt<0){ unlockAt=performance.now()/1000; } },{passive:true});
+  }
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else if(!reduce){ prev=0; raf=requestAnimationFrame(loop); } });
+  const mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',size);
+  size();
   if(reduce){ addEventListener('scroll',()=>{fx.style.opacity=Math.max(0,1-scrollY/(innerHeight*0.85)).toFixed(3);},{passive:true}); }
   else raf=requestAnimationFrame(loop);
 })();
