@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms and Conditions — SmartLocker</title>
+<meta name="description" content="SmartLocker terms and conditions.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#DCE1E5; --ink:#12171D; --muted:#4A5561; --line:rgba(18,23,29,.14);
+  --signal:#E1251B; --signal-ink:#B9180F; --led:#2FBF62; --amber:#E39A2D;
+  --scrim:rgba(220,225,229,.82);
+  --paper:#fff; --paper-ink:#12171D; --paper-muted:#55606B; --paper-line:#E3E7EA;
+  --night:#141920; --night2:#1B2129; --night-ink:#EEF1F3; --night-muted:#98A3AE; --night-line:rgba(238,241,243,.12);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){ --bg:#1A2028; --ink:#EEF1F3; --muted:#98A3AE; --line:rgba(238,241,243,.14); --scrim:rgba(26,32,40,.8); } }
+:root[data-theme="dark"]{ --bg:#1A2028; --ink:#EEF1F3; --muted:#98A3AE; --line:rgba(238,241,243,.14); --scrim:rgba(26,32,40,.8); }
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 90px);}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--paper-ink); font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;}
+a{color:inherit;}
+a:focus-visible,button:focus-visible{outline:3px solid var(--signal); outline-offset:3px; border-radius:6px;}
+h1,h2,h3{font-family:Archivo,"Arial Narrow",sans-serif; font-variation-settings:"wdth" 72; font-weight:760; line-height:.98; letter-spacing:-.012em; margin:0; text-wrap:balance;}
+.wrap{padding-left:clamp(20px,6vw,96px); padding-right:clamp(20px,6vw,96px);}
+
+header{position:fixed; top:0; left:0; right:0; z-index:20; padding:calc(env(safe-area-inset-top,0px) + 16px) clamp(20px,4vw,48px) 16px; display:flex; align-items:center; justify-content:space-between; color:var(--paper-ink); transition:background .3s, box-shadow .3s;}
+header.solid{background:rgba(255,255,255,.88); backdrop-filter:blur(14px) saturate(1.2); -webkit-backdrop-filter:blur(14px) saturate(1.2); box-shadow:0 1px 0 var(--paper-line);}
+.logo{display:flex; align-items:center; min-height:44px; text-decoration:none; color:inherit;}
+.logo svg.wordmark{display:block; height:clamp(22px,2.2vw,28px); width:auto; overflow:visible;}
+header nav{display:flex; gap:22px; align-items:center;}
+header nav a.t{text-decoration:none; font-size:.95rem; opacity:.75;} header nav a.t:hover{opacity:1;}
+header nav .pill{text-decoration:none; font-weight:500; font-size:.95rem; padding:9px 18px; border:1.5px solid currentColor; border-radius:999px;}
+
+/* intro */
+.intro{padding-top:calc(env(safe-area-inset-top,0px) + 120px); padding-bottom:clamp(32px,5vh,56px); display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:clamp(24px,5vw,80px); align-items:end;}
+.intro h1{font-size:clamp(3rem,7vw,6rem);}
+.intro p{margin:0; color:var(--paper-muted); max-width:42ch;}
+
+/* main grid */
+.main{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,.75fr); gap:clamp(20px,3vw,40px); padding-bottom:clamp(72px,10vh,120px); align-items:start;}
+.card{background:#fff; border:1px solid var(--paper-line); border-radius:24px; box-shadow:0 30px 60px -40px rgba(18,23,29,.35);}
+.tabs{display:flex; gap:6px; padding:8px; margin:clamp(16px,2vw,24px) clamp(16px,2vw,24px) 0; background:#F1F3F5; border-radius:999px; width:max-content; max-width:calc(100% - 32px);}
+.tab{all:unset; cursor:pointer; padding:11px 22px; border-radius:999px; font-weight:600; font-size:.98rem; color:var(--paper-muted); transition:background .25s,color .25s;}
+.tab[aria-selected="true"]{background:var(--paper-ink); color:#fff;}
+.tab:focus-visible{outline:3px solid var(--signal); outline-offset:2px;}
+.panel{padding:clamp(20px,3vw,40px);}
+.panel[hidden]{display:none;}
+.panel h2{font-size:clamp(1.8rem,3vw,2.5rem); margin-bottom:8px;}
+.panel .sub{color:var(--paper-muted); margin:0 0 28px; max-width:52ch;}
+form{display:grid; grid-template-columns:1fr 1fr; gap:18px 20px;}
+.f{display:flex; flex-direction:column; gap:7px;}
+.f.full{grid-column:1/-1;}
+label{font-size:.88rem; font-weight:600;}
+label .opt{font-weight:400; color:var(--paper-muted);}
+input,select,textarea{font:inherit; font-size:1rem; color:var(--paper-ink); background:#F7F8FA; border:1.5px solid #DDE2E7; border-radius:12px; padding:13px 14px; width:100%; transition:border-color .2s, background .2s, box-shadow .2s;}
+textarea{min-height:140px; resize:vertical;}
+select{appearance:none; -webkit-appearance:none; background-image:linear-gradient(45deg,transparent 50%,#55606B 50%),linear-gradient(135deg,#55606B 50%,transparent 50%); background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%; background-size:6px 6px,6px 6px; background-repeat:no-repeat; padding-right:40px;}
+input:hover,select:hover,textarea:hover{border-color:#C5CCD3;}
+input:focus,select:focus,textarea:focus{outline:none; border-color:var(--paper-ink); background:#fff; box-shadow:0 0 0 4px rgba(18,23,29,.08);}
+.f.err input,.f.err select,.f.err textarea{border-color:var(--signal); background:#FFF6F5;}
+.msg{font-size:.82rem; color:var(--signal-ink); min-height:0;}
+.prodpick{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.pp{position:relative;}
+.pp input{position:absolute; opacity:0; inset:0; cursor:pointer;}
+.pp span{display:flex; flex-direction:column; gap:6px; height:100%; padding:14px; border:1.5px solid #DDE2E7; border-radius:14px; background:#F7F8FA; font-size:.92rem; font-weight:600; line-height:1.25; transition:border-color .2s, background .2s;}
+.pp span small{font-weight:400; color:var(--paper-muted); font-size:.8rem;}
+.pp svg{width:28px; height:28px; color:var(--paper-ink);}
+.pp input:checked+span{border-color:var(--signal); background:#FFF6F5;}
+.pp input:checked+span svg{color:var(--signal);}
+.pp input:focus-visible+span{outline:3px solid var(--signal); outline-offset:2px;}
+.f.err .pp span{border-color:rgba(225,37,27,.5);}
+.consent a{color:#B9180F;}
+.consent{display:flex; gap:12px; align-items:flex-start; font-size:.92rem; font-weight:400; color:var(--paper-muted); cursor:pointer;}
+.consent input{width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--signal);}
+.hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+.f.actions{flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:16px 24px; margin-top:6px;}
+.btn{display:inline-flex; align-items:center; gap:10px; padding:15px 28px; border-radius:999px; font:600 1rem "IBM Plex Sans",sans-serif; border:0; cursor:pointer; text-decoration:none; transition:background .2s, transform .2s;}
+.btn.primary{background:var(--signal); color:#fff;} .btn.primary:hover{background:#C21D14;}
+.btn[disabled]{opacity:.6; cursor:progress;}
+.fine{font-size:.82rem; color:var(--paper-muted);}
+.done{display:none; text-align:left; padding:clamp(20px,3vw,40px);}
+.done.on{display:block;}
+.done .tick{width:56px; height:56px; border-radius:50%; background:rgba(47,191,98,.14); display:grid; place-items:center; margin-bottom:18px;}
+.done .tick svg{width:28px; height:28px; color:#1F9A4D;}
+.done h2{font-size:clamp(1.8rem,3vw,2.4rem); margin-bottom:10px;}
+.done p{color:var(--paper-muted); max-width:48ch;}
+.done button{all:unset; cursor:pointer; font-weight:600; border-bottom:1.5px solid var(--signal); margin-top:10px;}
+
+/* aside */
+aside{position:sticky; top:100px; display:grid; gap:16px;}
+.info{background:var(--night); color:var(--night-ink); border-radius:24px; padding:clamp(22px,2.4vw,32px); overflow:hidden; position:relative;}
+.info::before{content:""; position:absolute; width:320px; height:320px; right:-140px; top:-140px; border-radius:50%; background:radial-gradient(circle,rgba(225,37,27,.35),rgba(225,37,27,0) 65%); pointer-events:none;}
+.info h3{font-size:1.6rem; margin-bottom:18px; position:relative;}
+.info dl{margin:0; display:grid; gap:18px; position:relative;}
+.info dt{font-size:.8rem; color:var(--night-muted); margin-bottom:2px;}
+.info dd{margin:0; font-size:1.05rem;}
+.info dd a{text-decoration:none; border-bottom:1px solid rgba(255,255,255,.25);}
+.info dd a:hover{border-color:var(--signal);}
+.resp{display:flex; gap:12px; align-items:center; background:#F4F6F8; border:1px solid var(--paper-line); border-radius:18px; padding:16px 18px; font-size:.92rem; color:var(--paper-muted);}
+.resp i{flex:none; width:10px; height:10px; border-radius:50%; background:var(--led); box-shadow:0 0 0 0 rgba(47,191,98,.6); animation:live 2s infinite;}
+.resp b{color:var(--paper-ink);}
+@keyframes live{70%{box-shadow:0 0 0 9px rgba(47,191,98,0)}100%{box-shadow:0 0 0 0 rgba(47,191,98,0)}}
+@media (prefers-reduced-motion:reduce){ .resp i{animation:none;} *{transition:none!important;} }
+
+@media (max-width:1000px){ .main{grid-template-columns:1fr;} aside{position:static;} .intro{grid-template-columns:1fr;} .prodpick{grid-template-columns:1fr 1fr;} header nav a.t{display:none;} }
+@media (max-width:620px){ form{grid-template-columns:1fr;} .tabs{width:auto; display:flex; margin:14px 14px 0; max-width:none;} .tab{flex:1; text-align:center; white-space:nowrap; padding:12px 10px; font-size:.92rem;} }
+footer{
+  position:relative; z-index:4; background:#0F1318; color:#C9D1D8;
+  padding:clamp(64px,10vh,110px) clamp(20px,6vw,96px) calc(28px + env(safe-area-inset-bottom,0px));
+  font-size:.95rem;
+}
+.ftop{display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:clamp(32px,4vw,64px); padding-bottom:clamp(40px,6vh,64px); border-bottom:1px solid rgba(255,255,255,.1);}
+.fbrand .logo{color:#fff; margin-bottom:22px; display:inline-block;}
+.fbrand .logo svg.wordmark{height:30px;}
+.fbrand p{margin:0; color:#98A3AE; max-width:32ch; line-height:1.6;}
+.fbrand address{font-style:normal; color:#98A3AE; margin-top:20px; line-height:1.6;}
+footer a.fic{display:inline-flex; align-items:center; gap:10px;}
+footer .fi{width:18px; height:18px; flex:none; color:#E1251B;}
+footer h4{margin:0 0 16px; font-family:Archivo,sans-serif; font-variation-settings:"wdth" 90; font-weight:650; font-size:1rem; color:#fff;}
+footer ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+footer a{color:#C9D1D8; text-decoration:none; transition:color .2s;}
+footer a:hover{color:#fff;}
+footer .sub{margin-top:6px; color:#6F7A85; font-size:.85rem;}
+footer .sub + li{margin-top:-2px;}
+.fbot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 32px; padding-top:24px; font-size:.85rem; color:#7D8893;}
+.fbot nav{display:flex; gap:24px;}
+.fbot a{color:#98A3AE;}
+@media (max-width:1000px){ .ftop{grid-template-columns:1fr 1fr;} .fbrand{grid-column:1/-1;} }
+@media (max-width:520px){ .ftop{grid-template-columns:1fr;} }
+
+/* main navigation */
+.mainnav{display:flex; align-items:center; gap:4px;}
+.mainnav .ni{position:relative;}
+.mainnav .nl{display:inline-flex; align-items:center; gap:6px; padding:10px 14px; border-radius:999px; font-weight:500; font-size:.95rem; text-decoration:none; color:inherit; transition:background .2s;}
+.mainnav .nl:hover{background:rgba(127,127,127,.14);}
+.mainnav .caret{all:unset; cursor:pointer; display:inline-grid; place-items:center; width:26px; height:26px; margin-left:-10px; border-radius:50%; color:inherit;}
+.mainnav .caret svg{width:12px; height:12px; transition:transform .25s;}
+.mainnav .caret:focus-visible{outline:3px solid #E1251B; outline-offset:2px;}
+.mainnav .dd.open .caret svg{transform:rotate(180deg);}
+.mainnav .ddpanel{position:absolute; top:calc(100% + 12px); left:50%; transform:translate(-50%,8px); min-width:420px; background:#fff; color:#12171D; border-radius:18px; padding:18px; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; box-shadow:0 30px 60px -24px rgba(10,14,18,.45), 0 0 0 1px rgba(18,23,29,.06); opacity:0; visibility:hidden; transition:opacity .2s, transform .2s, visibility .2s; z-index:30;}
+.mainnav .ddpanel::before{content:""; position:absolute; left:0; right:0; top:-14px; height:14px;}
+.mainnav .dd:hover .ddpanel,.mainnav .dd.open .ddpanel{opacity:1; visibility:visible; transform:translate(-50%,0);}
+.mainnav .ddg{display:flex; flex-direction:column; gap:2px;}
+.mainnav .ddh{display:block; padding:6px 12px 8px; font-size:.78rem; font-weight:600; color:#6A7480; letter-spacing:.02em; cursor:default;}
+.mainnav .ddl{display:flex; justify-content:space-between; align-items:baseline; gap:12px; white-space:nowrap; padding:10px 12px; border-radius:12px; text-decoration:none; color:#12171D; font-weight:600; font-size:.95rem; transition:background .15s;}
+.mainnav .ddl small{font-weight:400; font-size:.8rem; color:#6A7480; white-space:nowrap;}
+.mainnav .ddl:hover,.mainnav .ddl:focus-visible{background:#F2F4F6;}
+.mainnav .ddl:focus-visible{outline:2px solid #E1251B; outline-offset:-2px;}
+.mainnav .quote{margin-left:10px; display:inline-flex; align-items:center; padding:11px 20px; border-radius:999px; background:#E1251B; color:#fff; font-weight:600; font-size:.95rem; text-decoration:none; transition:background .2s;}
+.mainnav .quote:hover{background:#C21D14;}
+.navtoggle{all:unset; display:none; cursor:pointer; width:42px; height:42px; border-radius:50%; place-items:center; color:inherit;}
+.navtoggle svg{width:22px; height:22px;}
+.navtoggle:focus-visible{outline:3px solid #E1251B; outline-offset:2px;}
+@media (max-width:980px){
+  .navtoggle{display:inline-grid;}
+  .mainnav{position:fixed; left:0; right:0; top:calc(env(safe-area-inset-top,0px) + 70px); flex-direction:column; align-items:stretch; gap:2px; background:#fff; color:#12171D; padding:12px 16px 20px; max-height:calc(100vh - 80px); overflow:auto; box-shadow:0 30px 50px -30px rgba(0,0,0,.5); opacity:0; visibility:hidden; transform:translateY(-8px); transition:opacity .2s, transform .2s, visibility .2s;}
+  header.navopen .mainnav{opacity:1; visibility:visible; transform:none;}
+  .mainnav .ni{display:flex; flex-wrap:wrap; align-items:center;}
+  .mainnav .nl{flex:1; padding:14px 12px; font-size:1.05rem; border-radius:12px;}
+  .mainnav .caret{margin-left:0; width:44px; height:44px;}
+  .mainnav .ddpanel{position:static; transform:none; min-width:0; width:100%; box-shadow:none; padding:0 0 8px 8px; grid-template-columns:1fr; display:none; opacity:1; visibility:visible;}
+  .mainnav .dd:hover .ddpanel{transform:none;}
+  .mainnav .dd.open .ddpanel{display:grid;}
+  .mainnav .quote{margin:10px 0 0; justify-content:center; padding:14px 20px;}
+}
+@media (prefers-reduced-motion:reduce){ .mainnav,.mainnav .ddpanel,.mainnav .caret svg{transition:none;} }
+
+/* phone boot loader */
+#bootl{position:fixed; inset:0; z-index:9999; pointer-events:none; display:none;}
+#bootl.on{display:block;}
+#bootl .bl-door{position:absolute; top:0; bottom:0; width:50.5%; background:#12171D; transition:transform .65s cubic-bezier(.7,0,.2,1);}
+#bootl .bl-door.l{left:0; box-shadow:inset -1px 0 0 rgba(255,255,255,.08);}
+#bootl .bl-door.r{right:0; box-shadow:inset 1px 0 0 rgba(255,255,255,.08);}
+#bootl .bl-door::after{content:""; position:absolute; top:50%; width:6px; height:46px; margin-top:64px; border-radius:3px; background:#3A424C;}
+#bootl .bl-door.l::after{right:14px;} #bootl .bl-door.r::after{left:14px;}
+#bootl .bl-core{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:22px; transition:opacity .2s, transform .3s; color:#fff;}
+#bootl .bl-logo{display:block; width:200px; height:auto;}
+#bootl .bl-leds{display:flex; gap:9px;}
+#bootl .bl-leds i{width:9px; height:9px; border-radius:50%; background:#2A323B; animation:blOn .28s ease-out forwards; animation-delay:calc(var(--n)*85ms + 120ms);}
+#bootl .bl-leds i:last-child{animation:blAmber .5s ease-out forwards; animation-delay:calc(var(--n)*85ms + 120ms);}
+@keyframes blOn{to{background:#2FBF62; box-shadow:0 0 10px rgba(47,191,98,.8);}}
+@keyframes blAmber{0%{background:#2A323B} 35%{background:#E39A2D; box-shadow:0 0 10px rgba(227,154,45,.9);} 100%{background:#2FBF62; box-shadow:0 0 10px rgba(47,191,98,.8);}}
+#bootl.open .bl-core{opacity:0; transform:translate(-50%,-50%) scale(.96);}
+#bootl.open .bl-door.l{transform:translateX(-101%);}
+#bootl.open .bl-door.r{transform:translateX(101%);}
+@media (prefers-reduced-motion:reduce){
+  #bootl .bl-door{transition:none;} #bootl .bl-leds i{animation-duration:.01ms;}
+  #bootl.open{opacity:0; transition:opacity .3s;} #bootl.open .bl-door{transform:none;}
+}
+@media (max-width:760px){ #loader{display:none!important;} }
+
+.lhero{padding-top:calc(env(safe-area-inset-top,0px) + 120px); padding-bottom:clamp(36px,5vh,56px); border-bottom:1px solid var(--paper-line);}
+.crumbs{display:flex; flex-wrap:wrap; gap:8px; font-size:.875rem; color:var(--paper-muted); margin:0 0 28px; list-style:none; padding:0;}
+.crumbs li+li::before{content:"/"; margin-right:8px; opacity:.5;}
+.crumbs a{text-decoration:none;} .crumbs a:hover{color:var(--paper-ink);}
+.lhero h1{font-size:clamp(2.8rem,6.5vw,5.4rem);}
+.lint{color:var(--paper-muted); font-size:1.15rem; margin:18px 0 0; max-width:48ch;}
+.eff{display:inline-block; margin:22px 0 0; font-size:.88rem; font-weight:600; padding:6px 14px; border-radius:999px; background:#F2F4F6;}
+.lbody{display:grid; grid-template-columns:minmax(200px,280px) minmax(0,1fr); gap:clamp(32px,6vw,96px); padding-top:clamp(40px,6vh,72px); padding-bottom:clamp(80px,12vh,140px); align-items:start;}
+.toc{position:sticky; top:100px;}
+.toc p{margin:0 0 12px; font-size:.8rem; font-weight:600; color:var(--paper-muted);}
+.toc ol{list-style:none; margin:0; padding:0; display:grid; gap:2px; counter-reset:t;}
+.toc li a{display:flex; gap:10px; padding:7px 10px; border-radius:10px; text-decoration:none; font-size:.92rem; color:var(--paper-muted); border-left:2px solid transparent; transition:background .2s,color .2s,border-color .2s;}
+.toc li a::before{counter-increment:t; content:counter(t,decimal-leading-zero); font-variant-numeric:tabular-nums; color:#A3ACB5; font-size:.8rem; padding-top:2px;}
+.toc li a:hover{background:#F4F6F8; color:var(--paper-ink);}
+.toc li a.on{color:var(--paper-ink); background:#F4F6F8; border-left-color:#E1251B;}
+.tocx{margin-top:20px; padding-top:16px; border-top:1px solid var(--paper-line); font-size:.88rem; color:var(--paper-muted);}
+.tocx a{color:#B9180F; font-weight:600;}
+.ltext{max-width:72ch;}
+.ls{padding:0 0 clamp(32px,4vh,44px); margin:0 0 clamp(32px,4vh,44px); border-bottom:1px solid var(--paper-line);}
+.ls:last-child{border-bottom:0;}
+.ls h2{font-size:clamp(1.5rem,2.4vw,2rem); font-variation-settings:"wdth" 78; display:flex; gap:14px; align-items:baseline; margin-bottom:16px;}
+.ls h2 span{font-family:"IBM Plex Sans",sans-serif; font-size:.85rem; font-weight:600; color:#E1251B; font-variant-numeric:tabular-nums;}
+.ls p{margin:0 0 14px; color:#3A444F; line-height:1.75;}
+.ls ul{margin:4px 0 16px; padding-left:22px; color:#3A444F; line-height:1.7;}
+.ls li{margin-bottom:8px;} .ls li::marker{color:#E1251B;}
+.ls a{color:#B9180F;}
+@media (max-width:900px){ .lbody{grid-template-columns:1fr;} .toc{position:static; background:#F7F8FA; border-radius:16px; padding:18px;} }
+</style>
+</head>
+<body>
+<div id="bootl" aria-hidden="true"><div class="bl-door l"></div><div class="bl-door r"></div><div class="bl-core"><svg class="bl-logo" viewBox="0 0 900 159" aria-hidden="true"><path d="M139.772 0H46.9525L27.3925 19.53C14.9743 31.9493 7.90383 48.7315 7.69083 66.293C7.47783 83.8544 14.1392 100.803 26.2525 113.52L139.772 0ZM-1.4375 159H91.4125L110.912 139.5C123.327 127.077 130.392 110.292 130.599 92.7309C130.806 75.1695 124.14 58.2229 112.022 45.51L-1.4375 159Z" fill="#C40000"/><path d="M217.892 117.39V51.06H237.062L252.752 76.68L268.472 51.06H287.642V117.39H269.762V79.23L255.362 101.82H250.142L235.772 79.23V117.39H217.892ZM374.432 117.39V51.09H403.682C413.262 51.09 420.622 53.28 425.762 57.66C430.902 62.06 433.472 68.08 433.472 75.72C433.472 80.76 432.262 85.08 429.842 88.68C427.682 92.1 424.652 94.76 420.752 96.66L434.762 117.39H414.332L402.662 99.96H393.452V117.39H374.432ZM294.662 117.39L322.112 51.06H340.622L368.012 117.39H349.412L344.582 105.66H318.092L313.232 117.39H294.662ZM180.452 118.74C175.212 118.74 170.162 118.08 165.302 116.76C160.442 115.42 156.482 113.7 153.422 111.6L159.542 97.23C162.442 99.13 165.762 100.68 169.502 101.88C173.242 103.06 176.932 103.65 180.572 103.65C183.012 103.65 184.942 103.44 186.362 103.02C187.802 102.6 188.852 102.01 189.512 101.25C190.192 100.49 190.532 99.61 190.532 98.61C190.532 97.17 189.872 96.03 188.552 95.19C187.252 94.35 185.532 93.65 183.392 93.09C181.272 92.55 178.932 92 176.372 91.44C173.832 90.88 171.272 90.16 168.692 89.28C166.132 88.4 163.782 87.25 161.642 85.83C159.502 84.39 157.782 82.5 156.482 80.16C155.182 77.84 154.532 74.91 154.532 71.37C154.532 67.41 155.582 63.79 157.682 60.51C159.802 57.25 162.972 54.64 167.192 52.68C171.432 50.72 176.722 49.74 183.062 49.74C187.242 49.74 191.362 50.22 195.422 51.18C199.502 52.14 203.132 53.59 206.312 55.53L200.612 69.87C197.552 68.17 194.542 66.91 191.582 66.09C188.602 65.25 185.712 64.83 182.912 64.83C180.512 64.83 178.582 65.08 177.122 65.58C175.662 66.1 174.622 66.77 174.002 67.59C173.362 68.43 173.042 69.36 173.042 70.38C173.042 71.78 173.692 72.89 174.992 73.71C176.292 74.53 178.012 75.2 180.152 75.72C182.272 76.24 184.622 76.77 187.202 77.31C189.782 77.85 192.342 78.56 194.882 79.44C197.442 80.3 199.782 81.44 201.902 82.86C204.042 84.28 205.762 86.15 207.062 88.47C208.362 90.77 209.012 93.66 209.012 97.14C209.012 101.04 207.962 104.62 205.862 107.88C203.742 111.16 200.572 113.79 196.352 115.77C192.132 117.75 186.832 118.74 180.452 118.74ZM438.782 51.06H496.562V67.2H476.642V117.39H458.282V67.2H438.782V51.06ZM393.452 84.99H403.202C406.922 84.99 409.672 84.17 411.452 82.53C413.252 80.89 414.152 78.62 414.152 75.72C414.152 72.82 413.252 70.53 411.452 68.85C409.672 67.17 406.922 66.33 403.202 66.33H393.452V84.99ZM324.062 91.2H338.612L331.352 73.59L324.062 91.2Z" fill="currentColor"/><path d="M592.5 118.74C587.38 118.74 582.65 117.89 578.31 116.19C573.99 114.49 570.24 112.08 567.06 108.96C563.88 105.86 561.41 102.2 559.65 97.98C557.89 93.78 557.01 89.19 557.01 84.21C557.01 79.21 557.89 74.63 559.65 70.47C561.41 66.29 563.88 62.64 567.06 59.52C570.24 56.4 573.99 53.99 578.31 52.29C582.65 50.59 587.37 49.74 592.47 49.74C597.59 49.74 602.31 50.59 606.63 52.29C610.93 53.99 614.67 56.4 617.85 59.52C621.01 62.64 623.48 66.28 625.26 70.44C627.02 74.62 627.9 79.21 627.9 84.21C627.9 89.21 627.02 93.81 625.26 98.01C623.48 102.21 621.01 105.87 617.85 108.99C614.67 112.09 610.93 114.49 606.63 116.19C602.31 117.89 597.6 118.74 592.5 118.74ZM838.02 117.39V51.09H867.24C876.84 51.09 884.21 53.28 889.35 57.66C894.49 62.06 897.06 68.08 897.06 75.72C897.06 80.76 895.85 85.08 893.43 88.68C891.27 92.1 888.24 94.76 884.34 96.66L898.35 117.39H877.92L866.22 99.96H857.04V117.39H838.02ZM775.02 51.06H828.6V66.69H793.14V76.74H824.49V91.2H793.14V101.64H828.6V117.39H775.02V51.06ZM706.38 117.39V51.09H724.71V78L748.62 51.09H769.14L743.34 80.46L770.49 117.39H748.89L731.07 93.72L724.71 100.83V117.39H706.38ZM670.08 118.74C665.08 118.74 660.46 117.9 656.22 116.22C651.98 114.56 648.3 112.18 645.18 109.08C642.06 106 639.63 102.36 637.89 98.16C636.17 93.94 635.31 89.3 635.31 84.24C635.31 79.18 636.17 74.54 637.89 70.32C639.63 66.12 642.06 62.48 645.18 59.4C648.3 56.3 651.99 53.92 656.25 52.26C660.49 50.58 665.11 49.74 670.11 49.74C675.99 49.74 681.25 50.82 685.89 52.98C690.53 55.14 694.39 58.27 697.47 62.37L685.71 73.53C683.71 71.01 681.51 69.08 679.11 67.74C676.69 66.4 673.99 65.73 671.01 65.73C668.49 65.73 666.2 66.17 664.14 67.05C662.06 67.91 660.27 69.16 658.77 70.8C657.27 72.42 656.1 74.37 655.26 76.65C654.42 78.93 654 81.46 654 84.24C654 87.02 654.42 89.55 655.26 91.83C656.1 94.11 657.27 96.06 658.77 97.68C660.27 99.32 662.06 100.57 664.14 101.43C666.2 102.31 668.49 102.75 671.01 102.75C673.99 102.75 676.69 102.08 679.11 100.74C681.51 99.4 683.71 97.46 685.71 94.92L697.47 106.08C694.39 110.14 690.53 113.27 685.89 115.47C681.25 117.65 675.98 118.74 670.08 118.74ZM504.93 51.06H523.11V101.28H555.45V117.39H504.93V51.06ZM592.47 102.75C594.81 102.75 596.98 102.31 598.98 101.43C601 100.57 602.76 99.33 604.26 97.71C605.76 96.09 606.93 94.15 607.77 91.89C608.61 89.61 609.03 87.06 609.03 84.24C609.03 81.42 608.61 78.87 607.77 76.59C606.93 74.33 605.76 72.39 604.26 70.77C602.76 69.15 601 67.91 598.98 67.05C596.98 66.17 594.81 65.73 592.47 65.73C590.11 65.73 587.93 66.17 585.93 67.05C583.91 67.91 582.15 69.15 580.65 70.77C579.13 72.39 577.95 74.33 577.11 76.59C576.27 78.87 575.85 81.42 575.85 84.24C575.85 87.04 576.27 89.58 577.11 91.86C577.95 94.14 579.13 96.09 580.65 97.71C582.15 99.33 583.91 100.57 585.93 101.43C587.93 102.31 590.11 102.75 592.47 102.75ZM857.04 84.99H866.79C870.51 84.99 873.26 84.17 875.04 82.53C876.84 80.89 877.74 78.62 877.74 75.72C877.74 72.82 876.84 70.53 875.04 68.85C873.26 67.17 870.51 66.33 866.79 66.33H857.04V84.99Z" fill="#C40000"/></svg><div class="bl-leds"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i><i style="--n:7"></i></div></div></div>
+<script>(function(){var el=document.getElementById("bootl"),show=false;try{show=matchMedia("(max-width:760px)").matches&&!sessionStorage.getItem("sl-booted");if(show)sessionStorage.setItem("sl-booted","1");}catch(e){show=false;}if(!show){el.parentNode.removeChild(el);return;}el.classList.add("on");var t0=Date.now(),MIN=1050,done=false;function open(){if(done)return;done=true;setTimeout(function(){el.classList.add("open");setTimeout(function(){el.parentNode&&el.parentNode.removeChild(el);},750);},Math.max(0,MIN-(Date.now()-t0)));}if(document.readyState==="complete")open();else window.addEventListener("load",open);setTimeout(open,2500);})();</script>
+
+<header>
+  <a class="logo" href="/" aria-label="SmartLocker home"><svg class="wordmark" viewBox="0 0 900 159" role="img" aria-label="SmartLocker"><path d="M139.772 0H46.9525L27.3925 19.53C14.9743 31.9493 7.90383 48.7315 7.69083 66.293C7.47783 83.8544 14.1392 100.803 26.2525 113.52L139.772 0ZM-1.4375 159H91.4125L110.912 139.5C123.327 127.077 130.392 110.292 130.599 92.7309C130.806 75.1695 124.14 58.2229 112.022 45.51L-1.4375 159Z" fill="#C40000"/><path d="M217.892 117.39V51.06H237.062L252.752 76.68L268.472 51.06H287.642V117.39H269.762V79.23L255.362 101.82H250.142L235.772 79.23V117.39H217.892ZM374.432 117.39V51.09H403.682C413.262 51.09 420.622 53.28 425.762 57.66C430.902 62.06 433.472 68.08 433.472 75.72C433.472 80.76 432.262 85.08 429.842 88.68C427.682 92.1 424.652 94.76 420.752 96.66L434.762 117.39H414.332L402.662 99.96H393.452V117.39H374.432ZM294.662 117.39L322.112 51.06H340.622L368.012 117.39H349.412L344.582 105.66H318.092L313.232 117.39H294.662ZM180.452 118.74C175.212 118.74 170.162 118.08 165.302 116.76C160.442 115.42 156.482 113.7 153.422 111.6L159.542 97.23C162.442 99.13 165.762 100.68 169.502 101.88C173.242 103.06 176.932 103.65 180.572 103.65C183.012 103.65 184.942 103.44 186.362 103.02C187.802 102.6 188.852 102.01 189.512 101.25C190.192 100.49 190.532 99.61 190.532 98.61C190.532 97.17 189.872 96.03 188.552 95.19C187.252 94.35 185.532 93.65 183.392 93.09C181.272 92.55 178.932 92 176.372 91.44C173.832 90.88 171.272 90.16 168.692 89.28C166.132 88.4 163.782 87.25 161.642 85.83C159.502 84.39 157.782 82.5 156.482 80.16C155.182 77.84 154.532 74.91 154.532 71.37C154.532 67.41 155.582 63.79 157.682 60.51C159.802 57.25 162.972 54.64 167.192 52.68C171.432 50.72 176.722 49.74 183.062 49.74C187.242 49.74 191.362 50.22 195.422 51.18C199.502 52.14 203.132 53.59 206.312 55.53L200.612 69.87C197.552 68.17 194.542 66.91 191.582 66.09C188.602 65.25 185.712 64.83 182.912 64.83C180.512 64.83 178.582 65.08 177.122 65.58C175.662 66.1 174.622 66.77 174.002 67.59C173.362 68.43 173.042 69.36 173.042 70.38C173.042 71.78 173.692 72.89 174.992 73.71C176.292 74.53 178.012 75.2 180.152 75.72C182.272 76.24 184.622 76.77 187.202 77.31C189.782 77.85 192.342 78.56 194.882 79.44C197.442 80.3 199.782 81.44 201.902 82.86C204.042 84.28 205.762 86.15 207.062 88.47C208.362 90.77 209.012 93.66 209.012 97.14C209.012 101.04 207.962 104.62 205.862 107.88C203.742 111.16 200.572 113.79 196.352 115.77C192.132 117.75 186.832 118.74 180.452 118.74ZM438.782 51.06H496.562V67.2H476.642V117.39H458.282V67.2H438.782V51.06ZM393.452 84.99H403.202C406.922 84.99 409.672 84.17 411.452 82.53C413.252 80.89 414.152 78.62 414.152 75.72C414.152 72.82 413.252 70.53 411.452 68.85C409.672 67.17 406.922 66.33 403.202 66.33H393.452V84.99ZM324.062 91.2H338.612L331.352 73.59L324.062 91.2Z" fill="currentColor"/><path d="M592.5 118.74C587.38 118.74 582.65 117.89 578.31 116.19C573.99 114.49 570.24 112.08 567.06 108.96C563.88 105.86 561.41 102.2 559.65 97.98C557.89 93.78 557.01 89.19 557.01 84.21C557.01 79.21 557.89 74.63 559.65 70.47C561.41 66.29 563.88 62.64 567.06 59.52C570.24 56.4 573.99 53.99 578.31 52.29C582.65 50.59 587.37 49.74 592.47 49.74C597.59 49.74 602.31 50.59 606.63 52.29C610.93 53.99 614.67 56.4 617.85 59.52C621.01 62.64 623.48 66.28 625.26 70.44C627.02 74.62 627.9 79.21 627.9 84.21C627.9 89.21 627.02 93.81 625.26 98.01C623.48 102.21 621.01 105.87 617.85 108.99C614.67 112.09 610.93 114.49 606.63 116.19C602.31 117.89 597.6 118.74 592.5 118.74ZM838.02 117.39V51.09H867.24C876.84 51.09 884.21 53.28 889.35 57.66C894.49 62.06 897.06 68.08 897.06 75.72C897.06 80.76 895.85 85.08 893.43 88.68C891.27 92.1 888.24 94.76 884.34 96.66L898.35 117.39H877.92L866.22 99.96H857.04V117.39H838.02ZM775.02 51.06H828.6V66.69H793.14V76.74H824.49V91.2H793.14V101.64H828.6V117.39H775.02V51.06ZM706.38 117.39V51.09H724.71V78L748.62 51.09H769.14L743.34 80.46L770.49 117.39H748.89L731.07 93.72L724.71 100.83V117.39H706.38ZM670.08 118.74C665.08 118.74 660.46 117.9 656.22 116.22C651.98 114.56 648.3 112.18 645.18 109.08C642.06 106 639.63 102.36 637.89 98.16C636.17 93.94 635.31 89.3 635.31 84.24C635.31 79.18 636.17 74.54 637.89 70.32C639.63 66.12 642.06 62.48 645.18 59.4C648.3 56.3 651.99 53.92 656.25 52.26C660.49 50.58 665.11 49.74 670.11 49.74C675.99 49.74 681.25 50.82 685.89 52.98C690.53 55.14 694.39 58.27 697.47 62.37L685.71 73.53C683.71 71.01 681.51 69.08 679.11 67.74C676.69 66.4 673.99 65.73 671.01 65.73C668.49 65.73 666.2 66.17 664.14 67.05C662.06 67.91 660.27 69.16 658.77 70.8C657.27 72.42 656.1 74.37 655.26 76.65C654.42 78.93 654 81.46 654 84.24C654 87.02 654.42 89.55 655.26 91.83C656.1 94.11 657.27 96.06 658.77 97.68C660.27 99.32 662.06 100.57 664.14 101.43C666.2 102.31 668.49 102.75 671.01 102.75C673.99 102.75 676.69 102.08 679.11 100.74C681.51 99.4 683.71 97.46 685.71 94.92L697.47 106.08C694.39 110.14 690.53 113.27 685.89 115.47C681.25 117.65 675.98 118.74 670.08 118.74ZM504.93 51.06H523.11V101.28H555.45V117.39H504.93V51.06ZM592.47 102.75C594.81 102.75 596.98 102.31 598.98 101.43C601 100.57 602.76 99.33 604.26 97.71C605.76 96.09 606.93 94.15 607.77 91.89C608.61 89.61 609.03 87.06 609.03 84.24C609.03 81.42 608.61 78.87 607.77 76.59C606.93 74.33 605.76 72.39 604.26 70.77C602.76 69.15 601 67.91 598.98 67.05C596.98 66.17 594.81 65.73 592.47 65.73C590.11 65.73 587.93 66.17 585.93 67.05C583.91 67.91 582.15 69.15 580.65 70.77C579.13 72.39 577.95 74.33 577.11 76.59C576.27 78.87 575.85 81.42 575.85 84.24C575.85 87.04 576.27 89.58 577.11 91.86C577.95 94.14 579.13 96.09 580.65 97.71C582.15 99.33 583.91 100.57 585.93 101.43C587.93 102.31 590.11 102.75 592.47 102.75ZM857.04 84.99H866.79C870.51 84.99 873.26 84.17 875.04 82.53C876.84 80.89 877.74 78.62 877.74 75.72C877.74 72.82 876.84 70.53 875.04 68.85C873.26 67.17 870.51 66.33 866.79 66.33H857.04V84.99Z" fill="#C40000"/></svg></a>
+  <button class="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <nav class="mainnav" id="mainnav" aria-label="Main">
+    <div class="ni"><a class="nl" href="/products#smart-tracker">Smart Tracker</a></div>
+    <div class="ni dd"><a class="nl" href="/products#smart-key-systems">Smart Key Systems</a><button class="caret" aria-expanded="false" aria-controls="dd-keys" aria-label="Show Smart Key Systems models"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5L6 8l3.5-3.5"/></svg></button>
+      <div class="ddpanel" id="dd-keys">
+        <div class="ddg" role="group" aria-label="Wall units"><span class="ddh">Wall units</span><a class="ddl" href="/products#wu50">WU50 Wall Unit</a><a class="ddl" href="/products#wu80">WU80 Wall Unit</a><a class="ddl" href="/products#wu160">WU160 Wall Unit</a></div>
+        <div class="ddg" role="group" aria-label="Safe units"><span class="ddh">Safe units</span><a class="ddl" href="/products#su40">SU40 Safe Unit</a><a class="ddl" href="/products#su160">SU160 Safe Unit</a><a class="ddl" href="/products#su400">SU400 Safe Unit</a></div>
+      </div>
+    </div>
+    <div class="ni"><a class="nl" href="/products#locker-gun-storage">Locker &amp; Gun Storage System</a></div>
+    <a class="quote" href="/contact#quote">Request a quote</a>
+  </nav>
+</header>
+
+<main>
+  <section class="lhero wrap">
+    <ol class="crumbs"><li><a href="/">Home</a></li><li aria-current="page">Terms and Conditions</li></ol>
+    <h1>Terms and Conditions</h1>
+    <p class="lint">The rules for using the SmartLocker website.</p>
+    <p class="eff">Effective October 13, 2026</p>
+  </section>
+  <section class="lbody wrap">
+    <nav class="toc" aria-label="On this page"><p>On this page</p><ol><li><a href="#s1">Agreement to these terms</a></li><li><a href="#s2">Using the Site</a></li><li><a href="#s3">Product information</a></li><li><a href="#s4">Quotes and orders</a></li><li><a href="#s5">Intellectual property</a></li><li><a href="#s6">Links to other websites</a></li><li><a href="#s7">Disclaimer</a></li><li><a href="#s8">Limitation of liability</a></li><li><a href="#s9">Indemnity</a></li><li><a href="#s10">Privacy</a></li><li><a href="#s11">Governing law</a></li><li><a href="#s12">Changes to these Terms</a></li><li><a href="#s13">Contact us</a></li></ol><div class="tocx">See also: <a href="/privacy">Privacy Policy</a></div></nav>
+    <article class="ltext"><section class="ls" id="s1" aria-labelledby="h1"><h2 id="h1"><span>01</span>Agreement to these terms</h2><p>These Terms and Conditions (the “Terms”) govern your use of the SmartLocker website, including every page, form and tool on it (the “Site”). The Site is operated by SmartLocker (“SmartLocker”, “we”, “us” or “our”), 555 Burnhamthorpe Rd, Suite 600, Mississauga, Ontario M9C 2Y3, Canada.</p><p>By using the Site you agree to these Terms. If you do not agree, please do not use the Site.</p></section><section class="ls" id="s2" aria-labelledby="h2"><h2 id="h2"><span>02</span>Using the Site</h2><p>You may use the Site to learn about our products and services, request a quote and contact us. You agree not to:</p><ul><li>use the Site in a way that breaks any law or regulation;</li><li>attempt to gain unauthorised access to the Site, its servers or any connected system;</li><li>interfere with the Site’s operation, including by introducing malware or sending automated requests at a volume that affects its performance;</li><li>submit false, misleading or someone else’s information through our forms;</li><li>copy, scrape or republish the Site’s content for commercial purposes without our written permission.</li></ul></section><section class="ls" id="s3" aria-labelledby="h3"><h2 id="h3"><span>03</span>Product information</h2><p>We work to keep product descriptions, photos, specifications and features accurate and current. However, products are updated over time, configurations vary by site, and some images, screens and examples on the Site are illustrations.</p><p>Information on the Site is provided for general guidance only and does not form part of any contract. Final specifications, capacities and features are confirmed in your written quotation or agreement with us.</p></section><section class="ls" id="s4" aria-labelledby="h4"><h2 id="h4"><span>04</span>Quotes and orders</h2><p>Submitting a quote request through the Site does not create a contract or oblige either of us to proceed. Quotes we provide are valid for the period stated in the quote and are subject to a site assessment where needed.</p><p>Any purchase, installation, software licence or service is governed by the written quotation, order or agreement you sign with SmartLocker, which takes precedence over these Terms where they differ.</p></section><section class="ls" id="s5" aria-labelledby="h5"><h2 id="h5"><span>05</span>Intellectual property</h2><p>The Site and its content, including text, graphics, photos, 3D models, interface designs, logos and the SmartLocker name and marks, are owned by SmartLocker or its licensors and are protected by Canadian and international intellectual property laws.</p><p>You may view and print pages for your own internal evaluation of our products. Any other use requires our prior written permission.</p></section><section class="ls" id="s6" aria-labelledby="h6"><h2 id="h6"><span>06</span>Links to other websites</h2><p>The Site may link to websites run by other companies. We do not control those sites and are not responsible for their content, products or privacy practices. A link does not mean we endorse the other site.</p></section><section class="ls" id="s7" aria-labelledby="h7"><h2 id="h7"><span>07</span>Disclaimer</h2><p>The Site is provided “as is” and “as available”. To the fullest extent permitted by law, we make no warranties, express or implied, about the Site, including that it will be uninterrupted, error-free or free of harmful components, or that its content is complete or accurate.</p><p>Product warranties, where they apply, are set out in your quotation or agreement, not on the Site.</p></section><section class="ls" id="s8" aria-labelledby="h8"><h2 id="h8"><span>08</span>Limitation of liability</h2><p>To the fullest extent permitted by law, SmartLocker and its directors, employees and partners are not liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of data, profits or business, arising from your use of, or inability to use, the Site.</p><p>Where liability cannot be excluded, our total liability arising from the Site is limited to one hundred Canadian dollars (CAD $100). Nothing in these Terms limits liability that cannot be limited under applicable law.</p></section><section class="ls" id="s9" aria-labelledby="h9"><h2 id="h9"><span>09</span>Indemnity</h2><p>You agree to indemnify SmartLocker against claims, losses and costs (including reasonable legal fees) arising from your misuse of the Site or your breach of these Terms.</p></section><section class="ls" id="s10" aria-labelledby="h10"><h2 id="h10"><span>10</span>Privacy</h2><p>How we collect and use personal information through the Site is explained in our <a href="/privacy">Privacy Policy</a>, which forms part of these Terms.</p></section><section class="ls" id="s11" aria-labelledby="h11"><h2 id="h11"><span>11</span>Governing law</h2><p>These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada that apply there. You agree that the courts of Ontario have exclusive jurisdiction over any dispute about the Site or these Terms.</p></section><section class="ls" id="s12" aria-labelledby="h12"><h2 id="h12"><span>12</span>Changes to these Terms</h2><p>We may update these Terms from time to time. The updated version takes effect when it is posted on this page, and the effective date at the top will change. Please check this page periodically.</p></section><section class="ls" id="s13" aria-labelledby="h13"><h2 id="h13"><span>13</span>Contact us</h2><p>Questions about these Terms? Contact us at <a href="mailto:info@smartlocker.ca">info@smartlocker.ca</a>, call <a href="tel:18555625375">1.855.562.5375</a>, or write to SmartLocker, 555 Burnhamthorpe Rd, Suite 600, Mississauga, Ontario M9C 2Y3, Canada.</p></section></article>
+  </section>
+</main>
+<footer>
+  <div class="ftop">
+    <div class="fbrand">
+      <a class="logo" href="/" aria-label="SmartLocker home">
+        <svg class="wordmark" viewBox="0 0 900 159" role="img" aria-label="SmartLocker"><path d="M139.772 0H46.9525L27.3925 19.53C14.9743 31.9493 7.90383 48.7315 7.69083 66.293C7.47783 83.8544 14.1392 100.803 26.2525 113.52L139.772 0ZM-1.4375 159H91.4125L110.912 139.5C123.327 127.077 130.392 110.292 130.599 92.7309C130.806 75.1695 124.14 58.2229 112.022 45.51L-1.4375 159Z" fill="#C40000"/><path d="M217.892 117.39V51.06H237.062L252.752 76.68L268.472 51.06H287.642V117.39H269.762V79.23L255.362 101.82H250.142L235.772 79.23V117.39H217.892ZM374.432 117.39V51.09H403.682C413.262 51.09 420.622 53.28 425.762 57.66C430.902 62.06 433.472 68.08 433.472 75.72C433.472 80.76 432.262 85.08 429.842 88.68C427.682 92.1 424.652 94.76 420.752 96.66L434.762 117.39H414.332L402.662 99.96H393.452V117.39H374.432ZM294.662 117.39L322.112 51.06H340.622L368.012 117.39H349.412L344.582 105.66H318.092L313.232 117.39H294.662ZM180.452 118.74C175.212 118.74 170.162 118.08 165.302 116.76C160.442 115.42 156.482 113.7 153.422 111.6L159.542 97.23C162.442 99.13 165.762 100.68 169.502 101.88C173.242 103.06 176.932 103.65 180.572 103.65C183.012 103.65 184.942 103.44 186.362 103.02C187.802 102.6 188.852 102.01 189.512 101.25C190.192 100.49 190.532 99.61 190.532 98.61C190.532 97.17 189.872 96.03 188.552 95.19C187.252 94.35 185.532 93.65 183.392 93.09C181.272 92.55 178.932 92 176.372 91.44C173.832 90.88 171.272 90.16 168.692 89.28C166.132 88.4 163.782 87.25 161.642 85.83C159.502 84.39 157.782 82.5 156.482 80.16C155.182 77.84 154.532 74.91 154.532 71.37C154.532 67.41 155.582 63.79 157.682 60.51C159.802 57.25 162.972 54.64 167.192 52.68C171.432 50.72 176.722 49.74 183.062 49.74C187.242 49.74 191.362 50.22 195.422 51.18C199.502 52.14 203.132 53.59 206.312 55.53L200.612 69.87C197.552 68.17 194.542 66.91 191.582 66.09C188.602 65.25 185.712 64.83 182.912 64.83C180.512 64.83 178.582 65.08 177.122 65.58C175.662 66.1 174.622 66.77 174.002 67.59C173.362 68.43 173.042 69.36 173.042 70.38C173.042 71.78 173.692 72.89 174.992 73.71C176.292 74.53 178.012 75.2 180.152 75.72C182.272 76.24 184.622 76.77 187.202 77.31C189.782 77.85 192.342 78.56 194.882 79.44C197.442 80.3 199.782 81.44 201.902 82.86C204.042 84.28 205.762 86.15 207.062 88.47C208.362 90.77 209.012 93.66 209.012 97.14C209.012 101.04 207.962 104.62 205.862 107.88C203.742 111.16 200.572 113.79 196.352 115.77C192.132 117.75 186.832 118.74 180.452 118.74ZM438.782 51.06H496.562V67.2H476.642V117.39H458.282V67.2H438.782V51.06ZM393.452 84.99H403.202C406.922 84.99 409.672 84.17 411.452 82.53C413.252 80.89 414.152 78.62 414.152 75.72C414.152 72.82 413.252 70.53 411.452 68.85C409.672 67.17 406.922 66.33 403.202 66.33H393.452V84.99ZM324.062 91.2H338.612L331.352 73.59L324.062 91.2Z" fill="currentColor"/><path d="M592.5 118.74C587.38 118.74 582.65 117.89 578.31 116.19C573.99 114.49 570.24 112.08 567.06 108.96C563.88 105.86 561.41 102.2 559.65 97.98C557.89 93.78 557.01 89.19 557.01 84.21C557.01 79.21 557.89 74.63 559.65 70.47C561.41 66.29 563.88 62.64 567.06 59.52C570.24 56.4 573.99 53.99 578.31 52.29C582.65 50.59 587.37 49.74 592.47 49.74C597.59 49.74 602.31 50.59 606.63 52.29C610.93 53.99 614.67 56.4 617.85 59.52C621.01 62.64 623.48 66.28 625.26 70.44C627.02 74.62 627.9 79.21 627.9 84.21C627.9 89.21 627.02 93.81 625.26 98.01C623.48 102.21 621.01 105.87 617.85 108.99C614.67 112.09 610.93 114.49 606.63 116.19C602.31 117.89 597.6 118.74 592.5 118.74ZM838.02 117.39V51.09H867.24C876.84 51.09 884.21 53.28 889.35 57.66C894.49 62.06 897.06 68.08 897.06 75.72C897.06 80.76 895.85 85.08 893.43 88.68C891.27 92.1 888.24 94.76 884.34 96.66L898.35 117.39H877.92L866.22 99.96H857.04V117.39H838.02ZM775.02 51.06H828.6V66.69H793.14V76.74H824.49V91.2H793.14V101.64H828.6V117.39H775.02V51.06ZM706.38 117.39V51.09H724.71V78L748.62 51.09H769.14L743.34 80.46L770.49 117.39H748.89L731.07 93.72L724.71 100.83V117.39H706.38ZM670.08 118.74C665.08 118.74 660.46 117.9 656.22 116.22C651.98 114.56 648.3 112.18 645.18 109.08C642.06 106 639.63 102.36 637.89 98.16C636.17 93.94 635.31 89.3 635.31 84.24C635.31 79.18 636.17 74.54 637.89 70.32C639.63 66.12 642.06 62.48 645.18 59.4C648.3 56.3 651.99 53.92 656.25 52.26C660.49 50.58 665.11 49.74 670.11 49.74C675.99 49.74 681.25 50.82 685.89 52.98C690.53 55.14 694.39 58.27 697.47 62.37L685.71 73.53C683.71 71.01 681.51 69.08 679.11 67.74C676.69 66.4 673.99 65.73 671.01 65.73C668.49 65.73 666.2 66.17 664.14 67.05C662.06 67.91 660.27 69.16 658.77 70.8C657.27 72.42 656.1 74.37 655.26 76.65C654.42 78.93 654 81.46 654 84.24C654 87.02 654.42 89.55 655.26 91.83C656.1 94.11 657.27 96.06 658.77 97.68C660.27 99.32 662.06 100.57 664.14 101.43C666.2 102.31 668.49 102.75 671.01 102.75C673.99 102.75 676.69 102.08 679.11 100.74C681.51 99.4 683.71 97.46 685.71 94.92L697.47 106.08C694.39 110.14 690.53 113.27 685.89 115.47C681.25 117.65 675.98 118.74 670.08 118.74ZM504.93 51.06H523.11V101.28H555.45V117.39H504.93V51.06ZM592.47 102.75C594.81 102.75 596.98 102.31 598.98 101.43C601 100.57 602.76 99.33 604.26 97.71C605.76 96.09 606.93 94.15 607.77 91.89C608.61 89.61 609.03 87.06 609.03 84.24C609.03 81.42 608.61 78.87 607.77 76.59C606.93 74.33 605.76 72.39 604.26 70.77C602.76 69.15 601 67.91 598.98 67.05C596.98 66.17 594.81 65.73 592.47 65.73C590.11 65.73 587.93 66.17 585.93 67.05C583.91 67.91 582.15 69.15 580.65 70.77C579.13 72.39 577.95 74.33 577.11 76.59C576.27 78.87 575.85 81.42 575.85 84.24C575.85 87.04 576.27 89.58 577.11 91.86C577.95 94.14 579.13 96.09 580.65 97.71C582.15 99.33 583.91 100.57 585.93 101.43C587.93 102.31 590.11 102.75 592.47 102.75ZM857.04 84.99H866.79C870.51 84.99 873.26 84.17 875.04 82.53C876.84 80.89 877.74 78.62 877.74 75.72C877.74 72.82 876.84 70.53 875.04 68.85C873.26 67.17 870.51 66.33 866.79 66.33H857.04V84.99Z" fill="#C40000"/></svg>
+      </a>
+      <p>Key control, key security, and key and asset management solutions from the security industry's leading provider.</p>
+      <address>555 Burnhamthorpe Rd, Suite 600<br>Mississauga, ON M9C 2Y3</address>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><a href="/products#smart-tracker">Smart Tracker</a></li>
+        <li><a href="/products#smart-key-systems">Smart Key Systems</a></li>
+        <li><a href="/products#locker-gun-storage">Locker & Gun Storage System</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="/contact#quote">Request a quote</a></li>
+        <li><a href="/contact#contact">Contact us</a></li>
+        <li><a class="fic" href="tel:18555625375"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>1.855.562.5375</a></li>
+        <li><a class="fic" href="mailto:info@smartlocker.ca"><svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>info@smartlocker.ca</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© Copyright 2026 SmartLocker. All rights reserved.</span>
+    <nav aria-label="Legal"><a href="/terms">Terms and Conditions</a><a href="/privacy">Privacy Policy</a></nav>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  const hdr=document.querySelector('header'), tog=hdr&&hdr.querySelector('.navtoggle'), nav=document.getElementById('mainnav'); if(!nav) return;
+  const dds=[...nav.querySelectorAll('.dd')];
+  const closeAll=()=>dds.forEach(d=>{d.classList.remove('open'); d.querySelector('.caret').setAttribute('aria-expanded','false');});
+  dds.forEach(d=>{ const c=d.querySelector('.caret'); c.addEventListener('click',e=>{ e.stopPropagation(); const o=!d.classList.contains('open'); closeAll(); d.classList.toggle('open',o); c.setAttribute('aria-expanded',o); }); });
+  if(tog) tog.addEventListener('click',()=>{ const o=!hdr.classList.contains('navopen'); hdr.classList.toggle('navopen',o); tog.setAttribute('aria-expanded',o); tog.setAttribute('aria-label',o?'Close menu':'Open menu'); });
+  document.addEventListener('click',e=>{ if(!nav.contains(e.target)&&!(tog&&tog.contains(e.target))){ closeAll(); hdr.classList.remove('navopen'); tog&&tog.setAttribute('aria-expanded','false'); } });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeAll(); hdr.classList.remove('navopen'); tog&&tog.setAttribute('aria-expanded','false'); } });
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ closeAll(); hdr.classList.remove('navopen'); }));
+})();
+</script>
+
+<script>
+(function(){
+  const links=[...document.querySelectorAll('.toc a[href^="#s"]')], secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+  if(!('IntersectionObserver' in window)) return;
+  const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); } }); },{rootMargin:'-30% 0px -60% 0px'});
+  if(links[0]) links[0].classList.add('on');
+  secs.forEach(s=>s&&io.observe(s));
+  const hdr=document.querySelector('header'); const onS=()=>hdr.classList.toggle('solid',scrollY>30); addEventListener('scroll',onS,{passive:true}); onS();
+})();
+</script>
+</body>
+</html>
