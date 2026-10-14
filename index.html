@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
+<script>(function(){var t="dark";try{t=localStorage.getItem("sl-theme")||"dark"}catch(e){}document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Smart Key Cabinets &amp; Key Management Systems | SmartLocker</title>
 <meta name="description" content="SmartLocker RFID key cabinets record who took each key, when, and when it came back. Smart key systems, lockers, gun storage and GPS trackers in Canada.">
@@ -408,6 +409,17 @@ a.pc{text-decoration:none; cursor:pointer;}
 }
 @media (max-width:760px){ #loader{display:none!important;} }
 </style>
+<style>
+/* light/dark toggle (site is dark unless the visitor picks light) */
+.themetog{all:unset; box-sizing:border-box; cursor:pointer; width:40px; height:40px; border-radius:50%; display:inline-grid; place-items:center; color:inherit; border:1.5px solid rgba(128,138,150,.45); margin-left:8px; transition:border-color .2s, background .2s;}
+.themetog:hover{border-color:currentColor; background:rgba(128,138,150,.12);}
+.themetog:focus-visible{outline:3px solid #E1251B; outline-offset:2px;}
+.themetog svg{width:18px; height:18px; grid-area:1/1;}
+.themetog .i-moon{display:block;} .themetog .i-sun{display:none;}
+:root[data-theme="dark"] .themetog .i-moon{display:none;} :root[data-theme="dark"] .themetog .i-sun{display:block;}
+.themetog.mob{display:none; margin-left:auto; margin-right:6px;}
+@media (max-width:980px){ .themetog.desk{display:none;} .themetog.mob{display:inline-grid;} }
+</style>
 </head>
 <body>
 <div id="bootl" aria-hidden="true"><div class="bl-door l"></div><div class="bl-door r"></div><div class="bl-core"><svg class="bl-logo" viewBox="0 0 900 159" aria-hidden="true"><path d="M139.772 0H46.9525L27.3925 19.53C14.9743 31.9493 7.90383 48.7315 7.69083 66.293C7.47783 83.8544 14.1392 100.803 26.2525 113.52L139.772 0ZM-1.4375 159H91.4125L110.912 139.5C123.327 127.077 130.392 110.292 130.599 92.7309C130.806 75.1695 124.14 58.2229 112.022 45.51L-1.4375 159Z" fill="#C40000"/><path d="M217.892 117.39V51.06H237.062L252.752 76.68L268.472 51.06H287.642V117.39H269.762V79.23L255.362 101.82H250.142L235.772 79.23V117.39H217.892ZM374.432 117.39V51.09H403.682C413.262 51.09 420.622 53.28 425.762 57.66C430.902 62.06 433.472 68.08 433.472 75.72C433.472 80.76 432.262 85.08 429.842 88.68C427.682 92.1 424.652 94.76 420.752 96.66L434.762 117.39H414.332L402.662 99.96H393.452V117.39H374.432ZM294.662 117.39L322.112 51.06H340.622L368.012 117.39H349.412L344.582 105.66H318.092L313.232 117.39H294.662ZM180.452 118.74C175.212 118.74 170.162 118.08 165.302 116.76C160.442 115.42 156.482 113.7 153.422 111.6L159.542 97.23C162.442 99.13 165.762 100.68 169.502 101.88C173.242 103.06 176.932 103.65 180.572 103.65C183.012 103.65 184.942 103.44 186.362 103.02C187.802 102.6 188.852 102.01 189.512 101.25C190.192 100.49 190.532 99.61 190.532 98.61C190.532 97.17 189.872 96.03 188.552 95.19C187.252 94.35 185.532 93.65 183.392 93.09C181.272 92.55 178.932 92 176.372 91.44C173.832 90.88 171.272 90.16 168.692 89.28C166.132 88.4 163.782 87.25 161.642 85.83C159.502 84.39 157.782 82.5 156.482 80.16C155.182 77.84 154.532 74.91 154.532 71.37C154.532 67.41 155.582 63.79 157.682 60.51C159.802 57.25 162.972 54.64 167.192 52.68C171.432 50.72 176.722 49.74 183.062 49.74C187.242 49.74 191.362 50.22 195.422 51.18C199.502 52.14 203.132 53.59 206.312 55.53L200.612 69.87C197.552 68.17 194.542 66.91 191.582 66.09C188.602 65.25 185.712 64.83 182.912 64.83C180.512 64.83 178.582 65.08 177.122 65.58C175.662 66.1 174.622 66.77 174.002 67.59C173.362 68.43 173.042 69.36 173.042 70.38C173.042 71.78 173.692 72.89 174.992 73.71C176.292 74.53 178.012 75.2 180.152 75.72C182.272 76.24 184.622 76.77 187.202 77.31C189.782 77.85 192.342 78.56 194.882 79.44C197.442 80.3 199.782 81.44 201.902 82.86C204.042 84.28 205.762 86.15 207.062 88.47C208.362 90.77 209.012 93.66 209.012 97.14C209.012 101.04 207.962 104.62 205.862 107.88C203.742 111.16 200.572 113.79 196.352 115.77C192.132 117.75 186.832 118.74 180.452 118.74ZM438.782 51.06H496.562V67.2H476.642V117.39H458.282V67.2H438.782V51.06ZM393.452 84.99H403.202C406.922 84.99 409.672 84.17 411.452 82.53C413.252 80.89 414.152 78.62 414.152 75.72C414.152 72.82 413.252 70.53 411.452 68.85C409.672 67.17 406.922 66.33 403.202 66.33H393.452V84.99ZM324.062 91.2H338.612L331.352 73.59L324.062 91.2Z" fill="currentColor"/><path d="M592.5 118.74C587.38 118.74 582.65 117.89 578.31 116.19C573.99 114.49 570.24 112.08 567.06 108.96C563.88 105.86 561.41 102.2 559.65 97.98C557.89 93.78 557.01 89.19 557.01 84.21C557.01 79.21 557.89 74.63 559.65 70.47C561.41 66.29 563.88 62.64 567.06 59.52C570.24 56.4 573.99 53.99 578.31 52.29C582.65 50.59 587.37 49.74 592.47 49.74C597.59 49.74 602.31 50.59 606.63 52.29C610.93 53.99 614.67 56.4 617.85 59.52C621.01 62.64 623.48 66.28 625.26 70.44C627.02 74.62 627.9 79.21 627.9 84.21C627.9 89.21 627.02 93.81 625.26 98.01C623.48 102.21 621.01 105.87 617.85 108.99C614.67 112.09 610.93 114.49 606.63 116.19C602.31 117.89 597.6 118.74 592.5 118.74ZM838.02 117.39V51.09H867.24C876.84 51.09 884.21 53.28 889.35 57.66C894.49 62.06 897.06 68.08 897.06 75.72C897.06 80.76 895.85 85.08 893.43 88.68C891.27 92.1 888.24 94.76 884.34 96.66L898.35 117.39H877.92L866.22 99.96H857.04V117.39H838.02ZM775.02 51.06H828.6V66.69H793.14V76.74H824.49V91.2H793.14V101.64H828.6V117.39H775.02V51.06ZM706.38 117.39V51.09H724.71V78L748.62 51.09H769.14L743.34 80.46L770.49 117.39H748.89L731.07 93.72L724.71 100.83V117.39H706.38ZM670.08 118.74C665.08 118.74 660.46 117.9 656.22 116.22C651.98 114.56 648.3 112.18 645.18 109.08C642.06 106 639.63 102.36 637.89 98.16C636.17 93.94 635.31 89.3 635.31 84.24C635.31 79.18 636.17 74.54 637.89 70.32C639.63 66.12 642.06 62.48 645.18 59.4C648.3 56.3 651.99 53.92 656.25 52.26C660.49 50.58 665.11 49.74 670.11 49.74C675.99 49.74 681.25 50.82 685.89 52.98C690.53 55.14 694.39 58.27 697.47 62.37L685.71 73.53C683.71 71.01 681.51 69.08 679.11 67.74C676.69 66.4 673.99 65.73 671.01 65.73C668.49 65.73 666.2 66.17 664.14 67.05C662.06 67.91 660.27 69.16 658.77 70.8C657.27 72.42 656.1 74.37 655.26 76.65C654.42 78.93 654 81.46 654 84.24C654 87.02 654.42 89.55 655.26 91.83C656.1 94.11 657.27 96.06 658.77 97.68C660.27 99.32 662.06 100.57 664.14 101.43C666.2 102.31 668.49 102.75 671.01 102.75C673.99 102.75 676.69 102.08 679.11 100.74C681.51 99.4 683.71 97.46 685.71 94.92L697.47 106.08C694.39 110.14 690.53 113.27 685.89 115.47C681.25 117.65 675.98 118.74 670.08 118.74ZM504.93 51.06H523.11V101.28H555.45V117.39H504.93V51.06ZM592.47 102.75C594.81 102.75 596.98 102.31 598.98 101.43C601 100.57 602.76 99.33 604.26 97.71C605.76 96.09 606.93 94.15 607.77 91.89C608.61 89.61 609.03 87.06 609.03 84.24C609.03 81.42 608.61 78.87 607.77 76.59C606.93 74.33 605.76 72.39 604.26 70.77C602.76 69.15 601 67.91 598.98 67.05C596.98 66.17 594.81 65.73 592.47 65.73C590.11 65.73 587.93 66.17 585.93 67.05C583.91 67.91 582.15 69.15 580.65 70.77C579.13 72.39 577.95 74.33 577.11 76.59C576.27 78.87 575.85 81.42 575.85 84.24C575.85 87.04 576.27 89.58 577.11 91.86C577.95 94.14 579.13 96.09 580.65 97.71C582.15 99.33 583.91 100.57 585.93 101.43C587.93 102.31 590.11 102.75 592.47 102.75ZM857.04 84.99H866.79C870.51 84.99 873.26 84.17 875.04 82.53C876.84 80.89 877.74 78.62 877.74 75.72C877.74 72.82 876.84 70.53 875.04 68.85C873.26 67.17 870.51 66.33 866.79 66.33H857.04V84.99Z" fill="#C40000"/></svg><div class="bl-leds"><i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i><i style="--n:3"></i><i style="--n:4"></i><i style="--n:5"></i><i style="--n:6"></i><i style="--n:7"></i></div></div></div>
@@ -426,6 +438,7 @@ a.pc{text-decoration:none; cursor:pointer;}
   <a class="logo" href="#b0" aria-label="SmartLocker home">
     <svg class="wordmark" viewBox="0 0 900 159" role="img" aria-label="SmartLocker"><path d="M139.772 0H46.9525L27.3925 19.53C14.9743 31.9493 7.90383 48.7315 7.69083 66.293C7.47783 83.8544 14.1392 100.803 26.2525 113.52L139.772 0ZM-1.4375 159H91.4125L110.912 139.5C123.327 127.077 130.392 110.292 130.599 92.7309C130.806 75.1695 124.14 58.2229 112.022 45.51L-1.4375 159Z" fill="#C40000"/><path d="M217.892 117.39V51.06H237.062L252.752 76.68L268.472 51.06H287.642V117.39H269.762V79.23L255.362 101.82H250.142L235.772 79.23V117.39H217.892ZM374.432 117.39V51.09H403.682C413.262 51.09 420.622 53.28 425.762 57.66C430.902 62.06 433.472 68.08 433.472 75.72C433.472 80.76 432.262 85.08 429.842 88.68C427.682 92.1 424.652 94.76 420.752 96.66L434.762 117.39H414.332L402.662 99.96H393.452V117.39H374.432ZM294.662 117.39L322.112 51.06H340.622L368.012 117.39H349.412L344.582 105.66H318.092L313.232 117.39H294.662ZM180.452 118.74C175.212 118.74 170.162 118.08 165.302 116.76C160.442 115.42 156.482 113.7 153.422 111.6L159.542 97.23C162.442 99.13 165.762 100.68 169.502 101.88C173.242 103.06 176.932 103.65 180.572 103.65C183.012 103.65 184.942 103.44 186.362 103.02C187.802 102.6 188.852 102.01 189.512 101.25C190.192 100.49 190.532 99.61 190.532 98.61C190.532 97.17 189.872 96.03 188.552 95.19C187.252 94.35 185.532 93.65 183.392 93.09C181.272 92.55 178.932 92 176.372 91.44C173.832 90.88 171.272 90.16 168.692 89.28C166.132 88.4 163.782 87.25 161.642 85.83C159.502 84.39 157.782 82.5 156.482 80.16C155.182 77.84 154.532 74.91 154.532 71.37C154.532 67.41 155.582 63.79 157.682 60.51C159.802 57.25 162.972 54.64 167.192 52.68C171.432 50.72 176.722 49.74 183.062 49.74C187.242 49.74 191.362 50.22 195.422 51.18C199.502 52.14 203.132 53.59 206.312 55.53L200.612 69.87C197.552 68.17 194.542 66.91 191.582 66.09C188.602 65.25 185.712 64.83 182.912 64.83C180.512 64.83 178.582 65.08 177.122 65.58C175.662 66.1 174.622 66.77 174.002 67.59C173.362 68.43 173.042 69.36 173.042 70.38C173.042 71.78 173.692 72.89 174.992 73.71C176.292 74.53 178.012 75.2 180.152 75.72C182.272 76.24 184.622 76.77 187.202 77.31C189.782 77.85 192.342 78.56 194.882 79.44C197.442 80.3 199.782 81.44 201.902 82.86C204.042 84.28 205.762 86.15 207.062 88.47C208.362 90.77 209.012 93.66 209.012 97.14C209.012 101.04 207.962 104.62 205.862 107.88C203.742 111.16 200.572 113.79 196.352 115.77C192.132 117.75 186.832 118.74 180.452 118.74ZM438.782 51.06H496.562V67.2H476.642V117.39H458.282V67.2H438.782V51.06ZM393.452 84.99H403.202C406.922 84.99 409.672 84.17 411.452 82.53C413.252 80.89 414.152 78.62 414.152 75.72C414.152 72.82 413.252 70.53 411.452 68.85C409.672 67.17 406.922 66.33 403.202 66.33H393.452V84.99ZM324.062 91.2H338.612L331.352 73.59L324.062 91.2Z" fill="currentColor"/><path d="M592.5 118.74C587.38 118.74 582.65 117.89 578.31 116.19C573.99 114.49 570.24 112.08 567.06 108.96C563.88 105.86 561.41 102.2 559.65 97.98C557.89 93.78 557.01 89.19 557.01 84.21C557.01 79.21 557.89 74.63 559.65 70.47C561.41 66.29 563.88 62.64 567.06 59.52C570.24 56.4 573.99 53.99 578.31 52.29C582.65 50.59 587.37 49.74 592.47 49.74C597.59 49.74 602.31 50.59 606.63 52.29C610.93 53.99 614.67 56.4 617.85 59.52C621.01 62.64 623.48 66.28 625.26 70.44C627.02 74.62 627.9 79.21 627.9 84.21C627.9 89.21 627.02 93.81 625.26 98.01C623.48 102.21 621.01 105.87 617.85 108.99C614.67 112.09 610.93 114.49 606.63 116.19C602.31 117.89 597.6 118.74 592.5 118.74ZM838.02 117.39V51.09H867.24C876.84 51.09 884.21 53.28 889.35 57.66C894.49 62.06 897.06 68.08 897.06 75.72C897.06 80.76 895.85 85.08 893.43 88.68C891.27 92.1 888.24 94.76 884.34 96.66L898.35 117.39H877.92L866.22 99.96H857.04V117.39H838.02ZM775.02 51.06H828.6V66.69H793.14V76.74H824.49V91.2H793.14V101.64H828.6V117.39H775.02V51.06ZM706.38 117.39V51.09H724.71V78L748.62 51.09H769.14L743.34 80.46L770.49 117.39H748.89L731.07 93.72L724.71 100.83V117.39H706.38ZM670.08 118.74C665.08 118.74 660.46 117.9 656.22 116.22C651.98 114.56 648.3 112.18 645.18 109.08C642.06 106 639.63 102.36 637.89 98.16C636.17 93.94 635.31 89.3 635.31 84.24C635.31 79.18 636.17 74.54 637.89 70.32C639.63 66.12 642.06 62.48 645.18 59.4C648.3 56.3 651.99 53.92 656.25 52.26C660.49 50.58 665.11 49.74 670.11 49.74C675.99 49.74 681.25 50.82 685.89 52.98C690.53 55.14 694.39 58.27 697.47 62.37L685.71 73.53C683.71 71.01 681.51 69.08 679.11 67.74C676.69 66.4 673.99 65.73 671.01 65.73C668.49 65.73 666.2 66.17 664.14 67.05C662.06 67.91 660.27 69.16 658.77 70.8C657.27 72.42 656.1 74.37 655.26 76.65C654.42 78.93 654 81.46 654 84.24C654 87.02 654.42 89.55 655.26 91.83C656.1 94.11 657.27 96.06 658.77 97.68C660.27 99.32 662.06 100.57 664.14 101.43C666.2 102.31 668.49 102.75 671.01 102.75C673.99 102.75 676.69 102.08 679.11 100.74C681.51 99.4 683.71 97.46 685.71 94.92L697.47 106.08C694.39 110.14 690.53 113.27 685.89 115.47C681.25 117.65 675.98 118.74 670.08 118.74ZM504.93 51.06H523.11V101.28H555.45V117.39H504.93V51.06ZM592.47 102.75C594.81 102.75 596.98 102.31 598.98 101.43C601 100.57 602.76 99.33 604.26 97.71C605.76 96.09 606.93 94.15 607.77 91.89C608.61 89.61 609.03 87.06 609.03 84.24C609.03 81.42 608.61 78.87 607.77 76.59C606.93 74.33 605.76 72.39 604.26 70.77C602.76 69.15 601 67.91 598.98 67.05C596.98 66.17 594.81 65.73 592.47 65.73C590.11 65.73 587.93 66.17 585.93 67.05C583.91 67.91 582.15 69.15 580.65 70.77C579.13 72.39 577.95 74.33 577.11 76.59C576.27 78.87 575.85 81.42 575.85 84.24C575.85 87.04 576.27 89.58 577.11 91.86C577.95 94.14 579.13 96.09 580.65 97.71C582.15 99.33 583.91 100.57 585.93 101.43C587.93 102.31 590.11 102.75 592.47 102.75ZM857.04 84.99H866.79C870.51 84.99 873.26 84.17 875.04 82.53C876.84 80.89 877.74 78.62 877.74 75.72C877.74 72.82 876.84 70.53 875.04 68.85C873.26 67.17 870.51 66.33 866.79 66.33H857.04V84.99Z" fill="#C40000"/></svg>
   </a>
+  <button class="themetog mob" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z"/></svg></button>
   <button class="navtoggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainnav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <nav class="mainnav" id="mainnav" aria-label="Main">
     <div class="ni"><a class="nl" href="products.html#smart-tracker">Smart Tracker</a></div>
@@ -436,6 +449,7 @@ a.pc{text-decoration:none; cursor:pointer;}
       </div>
     </div>
     <div class="ni"><a class="nl" href="products.html#locker-gun-storage">Locker &amp; Gun Storage System</a></div>
+    <button class="themetog desk" type="button" aria-label="Switch to light mode" title="Switch to light mode"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z"/></svg></button>
     <a class="quote" href="contact.html#quote">Request a quote</a>
   </nav>
 </header>
@@ -1175,7 +1189,7 @@ a.pc{text-decoration:none; cursor:pointer;}
     svg.style.setProperty('--ink',cssColor('--ink'));
   }
   applyTheme();
-  const mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',applyTheme);
+  addEventListener('sl-theme',applyTheme);
 
   // ---------- scroll ----------
   const sections=[...document.querySelectorAll('.beat')];
@@ -1396,47 +1410,45 @@ a.pc{text-decoration:none; cursor:pointer;}
   function dark(){ const c=getComputedStyle(document.documentElement).getPropertyValue('--bg').trim(); const n=parseInt(c.replace('#',''),16); return ((n>>16&255)*.3+(n>>8&255)*.59+(n&255)*.11)<110; }
   let isDark=dark();
 
-  // ridge polylines in unit space: a whorl of broken, slightly wobbly loops, then ridges below that follow its base
-  const R=(function(){
-    let sd=7; const rnd=()=>{ sd=(sd+0x6D2B79F5)|0; let x=Math.imul(sd^sd>>>15,1|sd); x=x+Math.imul(x^x>>>7,61|x)^x; return ((x^x>>>14)>>>0)/4294967296; };
-    const L=[], N=17;
-    for(let i=0;i<N;i++){
-      const rx=0.06+i*0.058, ry=rx*1.3, open=0.035+0.05/(i+1), tilt=0.06*Math.sin(i*1.7), a0=Math.PI*(0.5+open+tilt), a1=Math.PI*(2.5-open+tilt);
-      const cuts=[]; const nb=i<2?0:(rnd()<0.5?1:2); for(let k=0;k<nb;k++) cuts.push(a0+(a1-a0)*(0.1+0.8*rnd()));
-      let seg=[];
-      for(let ang=a0;ang<=a1;ang+=0.025){
-        if(cuts.some(c=>Math.abs(ang-c)<0.045+0.03/(i+1))){ if(seg.length>1) L.push(seg); seg=[]; continue; }
-        const w=1+0.03*Math.sin(3*ang+i*0.7)+0.02*Math.sin(5*ang-i*1.3), top=Math.sin(ang)<0?1.1:1;
-        seg.push([rx*Math.cos(ang)*w, -0.08+ry*Math.sin(ang)*w*top]);
-      }
-      if(seg.length>1) L.push(seg);
-    }
-    const rxO=0.06+(N-1)*0.058, ryO=rxO*1.3;
-    for(let j=1;j<=6;j++){
-      const seg=[], span=rxO*(1-j*0.06);
-      for(let x=-span;x<=span+1e-9;x+=0.02){ const e=ryO*Math.sqrt(Math.max(0,1-(x/rxO)**2)); seg.push([x, -0.08+e*(1-j*0.09)+ryO*j*0.09+j*0.06]); }
-      L.push(seg);
-    }
-    let x0=9,x1=-9,y0=9,y1=-9; L.forEach(sg=>sg.forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);}));
-    return {L, cx:(x0+x1)/2, cy:(y0+y1)/2, hw:(x1-x0)/2, hh:(y1-y0)/2, core:[0,-0.08]};
-  })();
-  const toX=u=>ox+(u-R.cx)*S, toY=v=>oy+(v-R.cy)*S;
-
-  function bake(cnv,stroke,lw,glow){
-    cnv.width=W*dpr; cnv.height=H*dpr; const x=cnv.getContext('2d');
-    x.setTransform(dpr,0,0,dpr,0,0); x.strokeStyle=stroke; x.lineWidth=lw; x.lineCap='round'; x.lineJoin='round';
-    if(glow){ x.shadowColor='rgba('+GREEN+',.85)'; x.shadowBlur=glow; }
-    x.beginPath(); R.L.forEach(sg=>{ x.moveTo(toX(sg[0][0]),toY(sg[0][1])); for(let k=1;k<sg.length;k++) x.lineTo(toX(sg[k][0]),toY(sg[k][1])); }); x.stroke();
+  // The print is drawn as the isolines of a smooth "ridge phase" field: a tall loop at the core,
+  // and ridges that flatten and lean into diagonal flow lines towards the edge.
+  // Lines are rasterised with a constant pixel width, so they stay crisp at any size.
+  const R={cx:0, cy:0, hw:1.04, hh:1.44, core:[0.03,0.16]};
+  function phase(u,v){
+    const x=u+0.04*Math.sin(2.3*v+1.1)+0.02*Math.sin(4.1*v-0.7), y=v+0.035*Math.sin(1.9*u+0.4)+0.015*Math.sin(3.7*u+2.0);
+    const dx=x-R.core[0], dy=y-R.core[1], r0=Math.hypot(dx,dy*0.6), asp=1.1+0.85*Math.exp(-r0*5);
+    let r=Math.hypot(dx,dy/asp);
+    const q=Math.min(1,Math.max(0,(r-0.3)/0.75)), sm=q*q*(3-2*q), d=Math.hypot(dx,dy)+1e-6, c=dx/d, sn=dy/d, c2=c*c-sn*sn, s2=2*c*sn;
+    return r+0.30*sm*(0.45*dx-0.32*dy)+0.06*sm*r*(0.8*c2+0.6*s2)+0.03*sm*(c*c2-sn*s2);
   }
+  const toX=u=>ox+(u-R.cx)*S, toY=v=>oy+(v-R.cy)*S;
+  // one pass over the print's box: ridge coverage per pixel, painted into the base and lit layers
+  function bakeAll(){
+    const rs=Math.min(dpr,1.5), x0=Math.floor((ox-R.hw*S)*rs), y0=Math.floor((oy-R.hh*S)*rs);
+    const w=Math.ceil(2*R.hw*S*rs)+2, h=Math.ceil(2*R.hh*S*rs)+2, sc=S*rs, N=Math.max(18,Math.min(32,R.hw*S/7.5));
+    const F=new Float32Array(w*h);
+    for(let j=0;j<h;j++) for(let i=0;i<w;i++) F[j*w+i]=phase((x0+i)/sc-ox/S,(y0+j)/sc-oy/S)*N;
+    const bi=new ImageData(w,h), li=new ImageData(w,h), bd=bi.data, ld=li.data;
+    const bc=isDark?[255,255,255,0.075]:[18,23,29,0.10], lc=isDark?[47,191,98,1]:[24,150,74,1], lwB=1.1*rs, lwL=1.35*rs;
+    for(let j=1;j<h-1;j++) for(let i=1;i<w-1;i++){
+      const k=j*w+i, u=(x0+i)/sc-ox/S, v=(y0+j)/sc-oy/S, e=Math.hypot(u/(R.hw*(1+0.07*v)),v/R.hh); if(e>1) continue;
+      const gx=(F[k+1]-F[k-1])/2, gy=(F[k+w]-F[k-w])/2, gr=Math.hypot(gx,gy)+1e-6, f=F[k], px=Math.abs(f-Math.round(f))/gr;
+      if(px>lwL) continue;
+      const edge=Math.min(1,(1-e)/0.06), ab=Math.max(0,Math.min(1,lwB/2+0.5-px))*edge, al=Math.max(0,Math.min(1,lwL/2+0.5-px))*edge;
+      const o=k*4; bd[o]=bc[0]; bd[o+1]=bc[1]; bd[o+2]=bc[2]; bd[o+3]=ab*bc[3]*255; ld[o]=lc[0]; ld[o+1]=lc[1]; ld[o+2]=lc[2]; ld[o+3]=al*255;
+    }
+    const one=(cnv,img,glow)=>{ cnv.width=W*dpr; cnv.height=H*dpr; const c=cnv.getContext('2d'), p=document.createElement('canvas'); p.width=w; p.height=h; p.getContext('2d').putImageData(img,0,0);
+      c.setTransform(dpr/rs,0,0,dpr/rs,0,0); if(glow){ c.shadowColor='rgba('+GREEN+',.8)'; c.shadowBlur=glow*rs; } c.drawImage(p,x0,y0); };
+    one(base,bi,0); one(lit,li,isDark?5:0);
+  }
+  let bakeT=0;
   function size(){
     dpr=Math.min(devicePixelRatio||1,2); W=innerWidth; H=innerHeight; isDark=dark();
     const narrow=W<760;
     S=narrow?Math.min(H*0.30/R.hh, W*0.42/R.hw):Math.min(H*0.40/R.hh, W*0.20/R.hw);
     ox=narrow?W*0.5:W*0.73; oy=narrow?H*0.42:H*0.52;
     cv.width=tmp.width=W*dpr; cv.height=tmp.height=H*dpr; g.setTransform(dpr,0,0,dpr,0,0);
-    bake(base, isDark?'rgba(255,255,255,.075)':'rgba(18,23,29,.09)', 1.2, 0);
-    bake(lit, isDark?'rgb('+GREEN+')':'rgb(24,150,74)', isDark?1.5:1.7, isDark?6:2);
-    draw(performance.now()/1000, 0);
+    clearTimeout(bakeT); bakeT=setTimeout(()=>{ bakeAll(); draw(performance.now()/1000, 0); }, 60);
   }
   function inside(x,y){ const u=(x-ox)/(R.hw*S*1.05), v=(y-oy)/(R.hh*S*1.02); return u*u+v*v<1; }
 
@@ -1493,7 +1505,7 @@ a.pc{text-decoration:none; cursor:pointer;}
     addEventListener('pointerdown',e=>{ if(fade>0.5&&inside(e.clientX,e.clientY)&&!interactive(e.target)&&unlockAt<0){ unlockAt=performance.now()/1000; } },{passive:true});
   }
   document.addEventListener('visibilitychange',()=>{ if(document.hidden) cancelAnimationFrame(raf); else if(!reduce){ prev=0; raf=requestAnimationFrame(loop); } });
-  const mq=matchMedia('(prefers-color-scheme: dark)'); if(mq.addEventListener) mq.addEventListener('change',size);
+  addEventListener('sl-theme',size);
   size();
   if(reduce){ addEventListener('scroll',()=>{fx.style.opacity=Math.max(0,1-scrollY/(innerHeight*0.85)).toFixed(3);},{passive:true}); }
   else raf=requestAnimationFrame(loop);
@@ -1510,6 +1522,18 @@ a.pc{text-decoration:none; cursor:pointer;}
   document.addEventListener('click',e=>{ if(!nav.contains(e.target)&&!(tog&&tog.contains(e.target))){ closeAll(); hdr.classList.remove('navopen'); tog&&tog.setAttribute('aria-expanded','false'); } });
   document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ closeAll(); hdr.classList.remove('navopen'); tog&&tog.setAttribute('aria-expanded','false'); } });
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ closeAll(); hdr.classList.remove('navopen'); }));
+})();
+</script>
+<script>
+(function(){
+  const root=document.documentElement, btns=document.querySelectorAll('.themetog');
+  function sync(){ const d=root.getAttribute('data-theme')!=='light', l=d?'Switch to light mode':'Switch to dark mode';
+    btns.forEach(b=>{ b.setAttribute('aria-label',l); b.title=l; }); }
+  btns.forEach(b=>b.addEventListener('click',e=>{ e.stopPropagation();
+    const next=root.getAttribute('data-theme')==='light'?'dark':'light'; root.setAttribute('data-theme',next);
+    try{ localStorage.setItem('sl-theme',next); }catch(err){}
+    sync(); dispatchEvent(new Event('sl-theme')); }));
+  sync();
 })();
 </script>
 </body>
