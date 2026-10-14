@@ -1,25 +1,38 @@
-# SmartLocker website
+# SmartLocker website (GitHub Pages)
 
-Static pages plus one serverless function. No build step.
+A static site with no build step. Every link is relative, so it works on a custom domain (smartlocker.ca)
+or on a GitHub project address (username.github.io/repo-name/).
 
-- `index.html`: homepage with the 3D tour (`/`)
-- `products.html`: the product pages (`/products#smart-tracker`, `#smart-key-systems`, `#locker-gun-storage`, the wall units `#wu50`, `#wu80`, `#wu160`, and the safe units `#su40`, `#su160`, `#su400`)
-- `contact.html`: request a quote and contact forms (`/contact#quote`, `/contact#contact`, or `/contact#quote-smart-tracker` to pre-select a product)
-- `terms.html`: Terms and Conditions (`/terms`)
-- `privacy.html`: Privacy Policy (`/privacy`)
-- `api/contact.js`: emails form submissions to SmartLocker through Resend
+## Files
+- `index.html`: homepage with the 3D tour
+- `products.html`: product pages (`products.html#smart-tracker`, `#smart-key-systems`, `#locker-gun-storage`,
+  wall units `#wu50`, `#wu80`, `#wu160`, safe units `#su40`, `#su160`, `#su400`)
+- `contact.html`: request a quote and contact forms (`contact.html#quote`, `#contact`, or `#quote-smart-tracker` to pre-select a product)
+- `terms.html`, `privacy.html`: legal pages
+- `404.html`: shown for missing pages
+- `favicon.svg`, `.nojekyll` (tells GitHub Pages to serve the files as they are)
 
-## Deploy to Vercel
-1. Vercel > Add New > Project, then drag in this folder or import it from Git.
-2. Framework preset: **Other**. Leave the build command and output directory empty.
-3. Deploy.
+## Publish on GitHub Pages
+1. Create a repository on GitHub (for example `smartlocker-site`) and upload everything in this folder to it,
+   including the hidden `.nojekyll` file.
+2. In the repository, go to **Settings > Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**, pick the `main` branch and the `/ (root)` folder, then **Save**.
+4. After a minute or two the site is live at `https://<your-username>.github.io/<repo-name>/`.
 
-## Turn on form emails
-1. Create a free account at resend.com and add an API key.
-2. In Vercel > Project > Settings > Environment Variables, add:
-   - `RESEND_API_KEY` = your Resend key (required)
-   - `TO_EMAIL` = where submissions go (optional, defaults to info@smartlocker.ca)
-   - `FROM_EMAIL` = e.g. `SmartLocker Website <web@smartlocker.ca>` after verifying smartlocker.ca in Resend (optional; until then Resend's test sender is used, which only delivers to your Resend account email)
-3. Redeploy.
+## Use your own domain (smartlocker.ca)
+1. In **Settings > Pages > Custom domain**, enter `smartlocker.ca` (or `www.smartlocker.ca`) and save.
+   GitHub adds a `CNAME` file to the repository for you.
+2. At your domain registrar or DNS host, point the domain to GitHub Pages:
+   - For `smartlocker.ca`, add four **A** records: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - For `www.smartlocker.ca`, add a **CNAME** record pointing to `<your-username>.github.io`
+3. Once the domain checks pass, tick **Enforce HTTPS**.
 
-Until the key is set, the forms fall back to opening the visitor's email app with everything pre-filled, so no enquiry is lost.
+## Turn on form emails (Formspree)
+GitHub Pages cannot run server code, so the forms use Formspree to email submissions.
+1. Create a free account at formspree.io and create a new form. Set it to send to info@smartlocker.ca.
+2. Copy the form's endpoint URL (it looks like `https://formspree.io/f/abcdwxyz`).
+3. Open `contact.html`, find this line near the top, paste the URL between the quotes, and commit:
+   `window.SL_FORM_ENDPOINT = "";`
+4. Send a test from the live site and confirm the first submission in your Formspree inbox if asked.
+
+Until the URL is added, the forms open the visitor's email app with everything filled in, so no enquiry is lost.
