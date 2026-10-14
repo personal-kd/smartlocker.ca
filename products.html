@@ -3,7 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SmartLocker products</title>
+<title>Key Cabinets, Smart Lockers &amp; GPS Trackers | SmartLocker</title>
+<meta name="description" content="RFID key cabinets for 8 to 1,000+ keys, wall and safe units, smart lockers and gun storage with 20 to 160 compartments, plus a card-thin GPS asset tracker.">
+<link rel="canonical" href="https://smartlocker.ca/products.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#1A2028">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SmartLocker">
+<meta property="og:locale" content="en_CA">
+<meta property="og:title" content="Key Cabinets, Smart Lockers &amp; GPS Trackers | SmartLocker">
+<meta property="og:description" content="RFID key cabinets for 8 to 1,000+ keys, wall and safe units, smart lockers and gun storage with 20 to 160 compartments, plus a card-thin GPS asset tracker.">
+<meta property="og:url" content="https://smartlocker.ca/products.html">
+<meta property="og:image" content="https://smartlocker.ca/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SmartLocker: Every key, accounted for.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Key Cabinets, Smart Lockers &amp; GPS Trackers | SmartLocker">
+<meta name="twitter:description" content="RFID key cabinets for 8 to 1,000+ keys, wall and safe units, smart lockers and gun storage with 20 to 160 compartments, plus a card-thin GPS asset tracker.">
+<meta name="twitter:image" content="https://smartlocker.ca/og-image.jpg">
+<link rel="apple-touch-icon" href="logo.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://smartlocker.ca/"}, {"@type": "ListItem", "position": 2, "name": "Products", "item": "https://smartlocker.ca/products.html"}]}</script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -506,7 +526,11 @@ Object.values(PRODUCTS).forEach(p=>{const r=x=>x&&x[0]==='@'?IMGS[x.slice(1)]:x;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const slug=(location.hash.replace('#','')||'').split('/')[0];
   const P=PRODUCTS[slug]||PRODUCTS[DEFAULT];
-  document.title=P.name+' — SmartLocker';
+  // per-product search/share title and description
+  const SEO={"smart-tracker": ["Smart Tracker: Card-Thin GPS Asset Tracker | SmartLocker", "A 9 mm, credit-card-sized GPS tracker with up to 8 weeks of battery and live position updates in the mobile app. Keep tabs on assets wherever they go."], "smart-key-systems": ["Smart Key Systems: RFID Key Cabinets | SmartLocker", "RFID key cabinets for 8 to 1,000+ keys with a touchscreen, motor-driven key locks and a backup battery. Know which key is where, who took it, and when."], "locker-gun-storage": ["Smart Lockers & Gun Storage System | SmartLocker", "Intelligent lockers with 20 to 160 locked compartments for keys, valuables, equipment and firearms. Opened by PIN and/or card, managed from a browser."], "wu50": ["WU50 Wall Unit: 50-Key RFID Key Cabinet | SmartLocker", "A wall-mounted RFID key cabinet with 50 keyplaces. Every key is locked and tagged, released only by PIN code and/or card. Run it alone or networked."], "wu80": ["WU80 Wall Unit: 80-Key RFID Key Cabinet | SmartLocker", "An 80-keyplace RFID key cabinet with a solid steel door. Every key is locked and tagged, released only by PIN code and/or card. Run it alone or networked."], "wu160": ["WU160 Wall Unit: 160-Key RFID Key Cabinet | SmartLocker", "A 160-keyplace RFID key cabinet with double doors for large key collections. Keys release only by PIN code and/or card. Run it alone or networked."], "su40": ["SU40 Safe Unit: 40-Key RFID Key Safe | SmartLocker", "A compact 40-keyplace RFID key safe with a heavy safe door. Every key is locked and tagged, released only by PIN code and/or card. Standalone or networked."], "su160": ["SU160 Safe Unit: 160-Key RFID Key Safe | SmartLocker", "A 160-keyplace RFID key safe with keyplaces inside the cabinet and on the door. Keys release only by PIN code and/or card. Standalone or networked."], "su400": ["SU400 Safe Unit: 400-Key RFID Key Safe | SmartLocker", "A 400-keyplace RFID key safe with keyplaces on every inner wall, for large sites. Keys release only by PIN code and/or card. Standalone or networked."]};
+  const seo=SEO[P.slug]; document.title=seo?seo[0]:P.name+' | SmartLocker';
+  if(seo){ document.querySelectorAll('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').forEach(m=>m.setAttribute('content',seo[1]));
+    document.querySelectorAll('meta[property="og:title"],meta[name="twitter:title"]').forEach(m=>m.setAttribute('content',seo[0])); }
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const sv='fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
   const ICONS={
